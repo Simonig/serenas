@@ -1,0 +1,115 @@
+swagger: '2.0'
+
+################################################################################
+#                              API Information                                 #
+################################################################################
+
+info:
+  version: 0.0.1
+  title: Back-Dash API
+basePath: /v1
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+
+################################################################################
+#                                           Paths                              #
+################################################################################
+paths:
+  /checkUser:
+    post:
+      tags:
+        - Auth
+      x-swagger-router-controller: auth
+      operationId: checkUser
+      summary: Valida que el usuario exista en el AD
+      description: ''
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: credenciales
+          description: Credenciales del usuario
+          required: true
+          schema:
+            $ref: '#/definitions/user'
+      responses:
+        '200':
+          description: Operación exitosa
+          schema:
+            $ref: '#/definitions/mensajeModel'
+        '400':
+          description: Solicitud incorrecta
+          schema:
+            $ref: '#/definitions/mensajeModel'
+        '401':
+          description: Credenciales incorrectas
+          schema:
+            $ref: '#/definitions/mensajeModel'
+        '500':
+          description: Error en sistema
+          schema:
+            $ref: '#/definitions/mensajeModel'
+
+  /changePwd:
+    post:
+      tags:
+        - Auth
+      x-swagger-router-controller: auth
+      operationId: changePwd
+      summary: Valida que el usuario exista en el AD
+      description: ''
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: credenciales
+          description: Credenciales del usuario
+          required: true
+          schema:
+            $ref: '#/definitions/user'
+      responses:
+        '200':
+          description: Operación exitosa
+          schema:
+            $ref: '#/definitions/mensajeModel'
+        '400':
+          description: Solicitud incorrecta
+          schema:
+            $ref: '#/definitions/mensajeModel'
+        '401':
+          description: Credenciales incorrectas
+          schema:
+            $ref: '#/definitions/mensajeModel'
+        '500':
+          description: Error en sistema
+          schema:
+            $ref: '#/definitions/mensajeModel'
+
+  /swagger:
+    x-swagger-pipe: swagger_raw
+
+
+
+################################################################################
+#                                 Definitions                                  #
+################################################################################
+
+definitions:
+  mensajeModel:
+    type: string
+
+
+  user:
+    type: object
+    properties:
+      username:
+        type: string
+      password:
+        type: string
+      newpassword:
+        type: string
+
