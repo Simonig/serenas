@@ -1,1 +1,1 @@
-# Skeleton project for Swagger
+# Proyecto base NodeJS + Swagger
