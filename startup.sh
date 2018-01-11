@@ -1,3 +1,3 @@
 export NODE_PATH=./src/api
-export SWAGGER_ENV=local
+export ENV=local
 npm start

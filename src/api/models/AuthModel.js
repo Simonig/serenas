@@ -17,7 +17,6 @@ function authModel() {
 	 * @return {type}      description
 	 */
 	authModel.checkUser = async function (body:object): Promise<string> {
-
 		return "hello world"
 	};
 
@@ -28,8 +27,6 @@ function authModel() {
 	 * @return {type}      description
 	 */
 	authModel.changePwd = async function (body:object) {
-
-
 		return
 	};
 

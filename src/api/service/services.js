@@ -9,7 +9,6 @@ const AuthService = require('service/AuthService');
  */
 function Services() {
 	const services = {};
-	console.log(models);
 
 	services.authService = new AuthService(models.authModel);
 

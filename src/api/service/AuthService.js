@@ -18,12 +18,8 @@ function authService(authModel) {
 	 */
 	authService.checkUser = async function (body) {
 		Logger.debug('Login AuthService: ' + JSON.stringify(body));
-		console.log(authModel);
 
-
-		const result = await authModel.checkUser();
-
-		return result
+		return  await authModel.checkUser();
 	}
 	/**
 	 * authService - description
@@ -33,8 +29,6 @@ function authService(authModel) {
 	 */
 	authService.changePwd = function (body) {
 		Logger.debug('Login AuthService: ' + JSON.stringify(body));
-
-
 
 	};
 
