@@ -1,15 +1,15 @@
-var dateFormat = require('dateformat');
+import dateFormat from 'dateformat';
+import winston from 'winston';
 
-var logger = null;
+let logger = null;
 
 function getLogger() {
     if (logger == null) {
-        winston = require('winston');
         logger = new(winston.Logger)({
             transports: [
                 new(winston.transports.Console)({
                     timestamp: function() {
-                        var now = Date.now();
+                        const now = Date.now();
                         return dateFormat(now, "dd-mm-yyyy HH:MM:ss");
                     },
                     formatter: function(options) {
@@ -27,19 +27,19 @@ function getLogger() {
     return logger;
 }
 
-var debug = function(message) {
+const debug = function(message) {
     getLogger().debug(message);
 };
 
-var error = function(message) {
+const error = function(message) {
     getLogger().error(message);
 };
 
-var info = function(message) {
+const info = function(message) {
     getLogger().info(message);
 };
 
-var warn = function(message) {
+const warn = function(message) {
     getLogger().warn(message);
 };
 

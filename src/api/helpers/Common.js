@@ -1,6 +1,6 @@
-var path = require('path');
-var Settings = require('settings');
-var Logger = require('helpers/Logger');
+import path from 'path';
+import Settings from '../settings';
+import Logger from './Logger';
 
 var settings = function () {
     return Settings;

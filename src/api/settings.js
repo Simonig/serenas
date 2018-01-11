@@ -1,10 +1,10 @@
 /**
  * Module dependencies.
  */
-var conf = require('conf');
-var Logger = require('helpers/Logger');
-var Common = require('helpers/Common');
-var settings = null;
+import conf from 'conf';
+import Logger from './helpers/Logger';
+import Common from './helpers/Common';
+let settings = null;
 
 /**
  * Almacena la configuración de la aplicación
@@ -12,14 +12,14 @@ var settings = null;
  */
 function Settings() {
     settings = {};
-    var env = Common.getEnv();
+    const env = Common.getEnv();
 
     Logger.info('Environment: ' + env.toUpperCase());
 
     set('env', env);
-    var envSettings = conf.settings[env];
+    const envSettings = conf.settings[env];
 
-    for (var name in envSettings) {
+    for (let name in envSettings) {
         if (envSettings.hasOwnProperty(name)) {
             set(name, envSettings[name]);
         }
@@ -27,7 +27,7 @@ function Settings() {
     return settings;
 }
 
-var set = function(key, val) {
+const set = function(key, val) {
     if (settings == null) {
         settings = new Settings();
     }

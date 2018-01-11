@@ -1,3 +1,3 @@
-export NODE_PATH=./api
+export NODE_PATH=./src/api
 export SWAGGER_ENV=local
-swagger project start
+npm start
