@@ -1,6 +1,3 @@
-import curl from 'curlrequest';
-import Logger from 'helpers/Logger';
-import Common from 'helpers/Common';
 // @flow
 
 /**
@@ -20,15 +17,6 @@ function authModel() {
 		return "hello world"
 	};
 
-	/**
-	 * authModel - description
-	 *
-	 * @param  {type} body description
-	 * @return {type}      description
-	 */
-	authModel.changePwd = async function (body:object) {
-		return
-	};
 
 	return authModel
 

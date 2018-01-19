@@ -23,13 +23,3 @@ module.exports.checkUser = async function (req, res) {
 
 };
 
-module.exports.changePwd = function (req, res) {
-	services.authService.changePwd(req.body).then(
-		function (response) {
-			res.status(200);
-			res.json(response);
-		},
-		function (err) {
-			return Common.handleError(res, err, __filename);
-		});
-};

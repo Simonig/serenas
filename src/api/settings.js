@@ -7,7 +7,7 @@ import Common from './helpers/Common';
 let settings = null;
 
 /**
- * Almacena la configuración de la aplicación
+ * Keep the configuration of the server
  * @constructor
  */
 function Settings() {

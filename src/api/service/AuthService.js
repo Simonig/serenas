@@ -20,16 +20,6 @@ function authService(authModel) {
 		Logger.debug('Login AuthService: ' + JSON.stringify(body));
 
 		return  await authModel.checkUser();
-	}
-	/**
-	 * authService - description
-	 *
-	 * @param  {type} body description
-	 * @return {type}      description
-	 */
-	authService.changePwd = function (body) {
-		Logger.debug('Login AuthService: ' + JSON.stringify(body));
-
 	};
 
 	return authService;
