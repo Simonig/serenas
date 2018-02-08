@@ -1,7 +1,6 @@
 import Logger from '../helpers/Logger';
 import Common from 'helpers/Common';
-const services = require('service/services')();
-
+import AuxmoneyService from '../services/auxmoney'
 
 /**
  * module - description
@@ -11,10 +10,11 @@ const services = require('service/services')();
  * @return {http}     description
  */
 
-module.exports.checkUser = async function (req, res) {
+export async function postForm (req, res) {
 
 	try {
-		const response = await services.authService.checkUser();
+		const data = req.body.data;
+		const response = await AuxmoneyService.postForm(data);
 		res.status(200);
 		res.json(response);
 	} catch (err) {
