@@ -13,6 +13,7 @@
     "dateformat": "^2.0.0",
     "ejs": "^2.5.7",
     "express": "^4.12.3",
+    "mongoose": "^5.0.4",
     "winston": "^2.3.1"
   },
   "devDependencies": {

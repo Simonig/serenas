@@ -1,7 +1,12 @@
 import Common from './api/helpers/Common';
 import Logger from './api/helpers/Logger';
 import path from 'path';
+import mongoose from 'mongoose';
+
 import {postForm } from './api/controllers/form';
+
+mongoose.connect(Common.settings().get('db_url'));
+mongoose.Promise = global.Promise;
 
 const app = require('express')();
 
