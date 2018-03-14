@@ -2,6 +2,7 @@ import Common from './api/helpers/Common';
 import Logger from './api/helpers/Logger';
 import path from 'path';
 import mongoose from 'mongoose';
+import express from 'express'
 
 import {postForm } from './api/controllers/form';
 
@@ -10,13 +11,11 @@ mongoose.Promise = global.Promise;
 
 const app = require('express')();
 
-app.set('view engine', 'ejs');
 
-app.set('views', path.join(__dirname, '/templates'));
-
+app.use(express.static(path.resolve(__dirname, '..', 'form', 'build')));
 
 app.get('/', (req, res) => {
-	res.render('index')
+	res.sendFile(path.resolve(__dirname, '..', 'form', 'build'), 'index.html');
 });
 
 

@@ -1,17 +1,16 @@
 import axios from 'axios';
-import Common from 'helpers/Common';
-
+import {settings} from 'helpers/Common';
 
 
 export class AuxmoneyService {
 
-	postForm = async (form) => {
-		const url = Common.settings().get('auxmoneyUrl');
+	postForm = async(form) => {
+		const url = settings().get('auxmoneyUrl');
 
-		try{
-			 return await axios.post(url, form);
+		try {
+			return await axios.post(url, form);
 
-		} catch(e){
+		} catch (e) {
 			console.log(e)
 		}
 	}
@@ -19,3 +18,4 @@ export class AuxmoneyService {
 
 
 export default new AuxmoneyService();
+
