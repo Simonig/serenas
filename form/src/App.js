@@ -1,36 +1,28 @@
 import React, {Component} from 'react';
 import logo from './logo__zpay6d.gif';
 import './App.css';
+import {initialState} from "./constants";
+import PersonalData from "./Components/PersonalData"
+import ContactData from "./Components/ContactData"
+import IncomeData from "./Components/IncomeData"
+import EmployerData from "./Components/EmployerData"
+import AmountField from "./Components/AmountField"
+import Select from "./Components/Select"
 
 class App extends Component {
 
 	constructor(props) {
 		super(props);
-		this.state = {
-			loan_asked: props.price || 1000,
-			duration: 12,
-			rsv: false,
-			collection_day: 1,
-			is_accepted_terms_of_service: false,
-			is_accepted_solvency_retrieval: false,
-			durationOpts: [
-				{value: 12, name: 12},
-				{value: 24, name: 24},
-				{value: 36, name: 36},
-				{value: 48, name: 48},
-				{value: 60, name: 60},
-			]
-
-		};
+		this.state = initialState;
 
 		this.onChange = this.onChange.bind(this);
 		this.submitForm = this.submitForm.bind(this);
 		this.renderOpts = this.renderOpts.bind(this);
 	}
 
-	renderOpts() {
+	renderOpts(fieldName) {
 
-		return this.state.durationOpts.map((opt, i) => {
+		return this.state.options[fieldName].map((opt, i) => {
 			return (
 				<option key={i} value={opt.value}>
 					{opt.name}
@@ -40,13 +32,21 @@ class App extends Component {
 	}
 
 
-	onChange(newValue) {
-		const newState = {};
-		newState[newValue.name] = newValue.value;
+	onChange(newValue, section) {
+		const newState = Object.assign({}, this.state);
+
+		if (section) {
+			newState[section] = Object.assign({}, this.state[section]);
+			newState[section][newValue.name] = newValue.value
+		}
+
+		else newState[newValue.name] = newValue.value;
+
+
 		this.setState(newState);
 	}
 
-	submitForm(){
+	submitForm() {
 
 
 	}
@@ -70,25 +70,21 @@ class App extends Component {
 										 label="Loan"/>
 
 
-							<div className="form-group">
-								<label>Duration</label>
-								<select className="form-control" value={this.state.duration}
-										name="duration"
-										onChange={e => this.onChange(e.target)}>
-									{ this.renderOpts() }
-								</select>
-							</div>
+							<Select
+								name="duration"
+								label="Duration"
+								onChange={this.onChange}
+								options={this.state.options.duration}
+								value={this.state.duration}
+							/>
+							<Select
+								name="collection_day"
+								label="Collection Day"
+								onChange={this.onChange}
+								options={this.state.options.collection_day}
+								value={this.state.collection_day}
+							/>
 
-							<div className="form-group">
-								<label>Collection Day</label>
-
-								<select className="form-control" value={this.state.collection_day}
-										name="collection_day"
-										onChange={e => this.onChange(e.target)}>
-									<option value="1">1</option>
-									<option value="15">15</option>
-								</select>
-							</div>
 
 							<div className="form-check">
 
@@ -102,13 +98,33 @@ class App extends Component {
 									value={this.state.is_accepted_terms_of_service}
 									type="checkbox"
 								/>
-								<label className="form-check-label" >Terms and Conditions</label>
-
+								<label className="form-check-label">Terms and Conditions</label>
 
 
 							</div>
+							<h1>Personal Data</h1>
 
-							<button onClick={this.submitForm} type="button" className="btn btn-dark">Send</button>
+							<PersonalData
+								personalData={this.state.personal_data}
+								onChange={this.onChange}
+							/>
+
+							<ContactData
+								contactData={this.state.contact_data}
+								onChange={this.onChange}
+							/>
+							<IncomeData
+								incomeData={this.state.income}
+								onChange={this.onChange}
+							/>
+							<EmployerData
+								employerData={this.state.employer_data}
+								onChange={this.onChange}
+							/>
+
+							<button onClick={this.submitForm} type="button"
+									className="btn btn-dark">Send
+							</button>
 
 						</div>
 					</div>
@@ -118,50 +134,6 @@ class App extends Component {
 	}
 }
 
-class AmountField extends Component {
-
-	constructor() {
-		super();
-		this.formatAmount = this.formatAmount.bind(this)
-	}
-
-	formatAmount(e) {
-		const {value, name} = e.target;
-		const payload = {value, name};
-
-		payload.value = Math.ceil(payload.value / 100) * 100;
-		if (payload.value > 25000) payload.value = 25000;
-		if (payload.value < 1000) payload.value = 1000;
-		this.props.onChange(payload)
-
-	}
-
-	render() {
-		const {value, name, label, onChange} = this.props;
-
-		return (
-
-			<div className="form-group">
-
-				<label>Amount</label>
-
-				<input
-					type="number"
-					id="amount"
-					placeholder={label}
-					value={value}
-					className="form-control"
-					step={100}
-					name={name}
-					onBlur={this.formatAmount}
-					onChange={(e) => onChange(e.target)}
-				/>
-			</div>
-
-
-		)
-	}
-}
 
 
 export default App;
