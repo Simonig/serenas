@@ -85,6 +85,15 @@ class App extends Component {
 								value={this.state.collection_day}
 							/>
 
+							<Select
+								name="rsv"
+								label="Rsv"
+								onChange={this.onChange}
+								options={this.state.options.yesNo}
+								value={this.state.rsv}
+							/>
+
+
 
 							<div className="form-check">
 
@@ -105,6 +114,7 @@ class App extends Component {
 							<h1>Personal Data</h1>
 
 							<PersonalData
+								options={this.state.options}
 								personalData={this.state.personal_data}
 								onChange={this.onChange}
 							/>

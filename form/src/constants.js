@@ -1,7 +1,10 @@
+import moment from 'moment'
+
 
 export const initialState = {
 	loan_asked: 1000,
 	duration: 12,
+	external_id: "ext_1",
 	rsv: false,
 	collection_day: 1,
 	is_accepted_terms_of_service: false,
@@ -46,6 +49,13 @@ export const initialState = {
 			{value: 2, name: "Miete"},
 			{value: 3, name: "bei den Eltern"},
 		],
+		family_status: [
+			{value: 1, name: "ledig"},
+			{value: 2, name: "verheiratet"},
+			{value: 3, name: "verwitwet"},
+			{value: 4, name: "geschieden"},
+			{value: 5, name: "getrennt lebend"},
+		],
 		collection_day: [
 			{value: 1, name: "1"},
 			{value: 15, name: "15"},
@@ -62,10 +72,10 @@ export const initialState = {
 	personal_data: {
 		//salutation 1: Herr 2: Frau
 		address: 1,
+		birth_date: moment(),
 		forename: "",
 		surname: "",
 		family_status: "",
-		birth_date: "",
 		nationality: "",
 		occupation: 0,
 		has_credit_card: 0,
