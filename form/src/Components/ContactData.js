@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import InputField from './InputField';
+import DatePickerInput from './DatePickerInput';
 
 export default class ContactData extends Component {
 
@@ -23,6 +24,13 @@ export default class ContactData extends Component {
 		return (
 			<div>
 				<h1>Contact Data</h1>
+
+				<DatePickerInput
+					onChange={this.onChange}
+					name="birth_date"
+					label="Birth Date"
+					value={living_since}
+				/>
 				<InputField
 					name="street_name"
 					label="Street Name"

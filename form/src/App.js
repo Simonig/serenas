@@ -5,7 +5,9 @@ import {initialState} from "./constants";
 import PersonalData from "./Components/PersonalData"
 import ContactData from "./Components/ContactData"
 import IncomeData from "./Components/IncomeData"
+import ExpensesData from "./Components/ExpensesData"
 import EmployerData from "./Components/EmployerData"
+import BankData from "./Components/BankData"
 import AmountField from "./Components/AmountField"
 import Select from "./Components/Select"
 
@@ -15,12 +17,10 @@ class App extends Component {
 		super(props);
 		this.state = initialState;
 
-		this.onChange = this.onChange.bind(this);
-		this.submitForm = this.submitForm.bind(this);
-		this.renderOpts = this.renderOpts.bind(this);
+
 	}
 
-	renderOpts(fieldName) {
+	renderOpts = (fieldName) => {
 
 		return this.state.options[fieldName].map((opt, i) => {
 			return (
@@ -29,10 +29,10 @@ class App extends Component {
 				</option>
 			)
 		})
-	}
+	};
 
 
-	onChange(newValue, section) {
+	onChange = (newValue, section) => {
 		const newState = Object.assign({}, this.state);
 
 		if (section) {
@@ -44,12 +44,12 @@ class App extends Component {
 
 
 		this.setState(newState);
-	}
+	};
 
-	submitForm() {
+	submitForm = () => {
 
 
-	}
+	};
 
 	render() {
 		return (
@@ -94,7 +94,6 @@ class App extends Component {
 							/>
 
 
-
 							<div className="form-check">
 
 								<input
@@ -127,8 +126,19 @@ class App extends Component {
 								incomeData={this.state.income}
 								onChange={this.onChange}
 							/>
+
+							<ExpensesData
+								expensesData={this.state.expenses}
+								onChange={this.onChange}
+							/>
+
 							<EmployerData
 								employerData={this.state.employer_data}
+								onChange={this.onChange}
+							/>
+
+							<BankData
+								bankData={this.state.bank_data}
 								onChange={this.onChange}
 							/>
 
@@ -143,7 +153,6 @@ class App extends Component {
 		);
 	}
 }
-
 
 
 export default App;

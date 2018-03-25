@@ -1,7 +1,19 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 
 export default class TextField extends Component {
+
+	static propTypes = {
+		value: PropTypes.oneOfType([
+			PropTypes.string,
+			PropTypes.number
+		]).isRequired,
+		label: PropTypes.string,
+		onChange: PropTypes.func.isRequired,
+		name: PropTypes.string.isRequired,
+		type: PropTypes.string,
+	};
 
 
 	render() {

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import InputField from './InputField';
+import DatePickerInput from './DatePickerInput';
 
 export default class EmployerData extends Component {
 
@@ -57,6 +58,11 @@ export default class EmployerData extends Component {
 					label="city"
 					value={city}
 					onChange={this.onChange}
+				/>
+				<DatePickerInput
+					name="since"
+					label="since"
+					value={since}
 				/>
 
 

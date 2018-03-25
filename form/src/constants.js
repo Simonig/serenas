@@ -76,7 +76,7 @@ export const initialState = {
 		forename: "",
 		surname: "",
 		family_status: "",
-		nationality: "",
+		nationality: "DE",
 		occupation: 0,
 		has_credit_card: 0,
 		has_ec_card: 0,
@@ -88,7 +88,7 @@ export const initialState = {
 
 	},
 	contact_data: {
-		living_since: "date",//not required
+		living_since: moment(),//not required
 		street_name: "",
 		street_number: "",
 		zip_code: "",
@@ -119,7 +119,7 @@ export const initialState = {
 		phone: "01234567890",
 		zip: "40212",
 		city: "",
-		since: "date",
+		since: moment(),
 		employment_status: 1
 	},
 	bank_data: {
