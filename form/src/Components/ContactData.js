@@ -1,90 +1,118 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import InputField from './InputField';
 import DatePickerInput from './DatePickerInput';
 
-export default class ContactData extends Component {
+class ContactData extends Component {
+  constructor(props) {
+    super(props);
 
-	constructor(props) {
-		super(props);
+    const {
+      livingSince, streetName, streetNumber, zipCode, city,
+      telephone, mobileTelephone, email,
+    } = this.props.contactData;
 
-		this.onChange = this.onChange.bind(this);
-	}
+    this.state = {
+      livingSince: livingSince || '',
+      streetName: streetName || '',
+      streetNumber: streetNumber || '',
+      zipCode: zipCode || '',
+      city: city || '',
+      telephone: telephone || '',
+      mobileTelephone: mobileTelephone || '',
+      email: email || '',
+    };
+  }
 
-	onChange(e) {
-		this.props.onChange(e, "contact_data")
-	}
+  onChange = (e) => {
+    const { name, value } = e;
+    this.setState({ [name]: value }, () => {
+      this.props.onChange(e, 'contactData');
+    });
+  };
 
+  render() {
+    const {
+      livingSince, streetName, streetNumber, zipCode, city,
+      telephone, mobileTelephone, email,
+    } = this.state;
 
-	render() {
-		const {
-			living_since, street_name, street_number, zip_code, city,
-			telephone, mobile_telephone, email
-		} = this.props.contactData;
+    return (
+      <div>
+        <h1>Contact Data</h1>
 
-		return (
-			<div>
-				<h1>Contact Data</h1>
-
-				<DatePickerInput
-					onChange={this.onChange}
-					name="birth_date"
-					label="Birth Date"
-					value={living_since}
-				/>
-				<InputField
-					name="street_name"
-					label="Street Name"
-					value={street_name}
-					onChange={this.onChange}
-				/>
-
-				<InputField
-					name="street_number"
-					label="Street Number"
-					value={street_number}
-					onChange={this.onChange}
-				/>
-
-				<InputField
-					name="zip_code"
-					label="Zip Code"
-					value={zip_code}
-					onChange={this.onChange}
-				/>
-
-
-				<InputField
-					name="city"
-					label="City"
-					value={city}
-					onChange={this.onChange}
-				/>
-
-				<InputField
-					name="telephone"
-					label="Telephone"
-					value={telephone}
-					onChange={this.onChange}
-				/>
+        <DatePickerInput
+          onChange={this.onChange}
+          name="livingSince"
+          label="Birth Date"
+          value={livingSince}
+        />
+        <InputField
+          name="streetName"
+          label="Street Name"
+          value={streetName}
+          onChange={this.onChange}
+        />
+        <InputField
+          name="streetNumber"
+          label="Street Number"
+          value={streetNumber}
+          onChange={this.onChange}
+        />
+        <InputField
+          name="zipCode"
+          label="Zip Code"
+          value={zipCode}
+          onChange={this.onChange}
+        />
 
 
-				<InputField
-					name="mobile_telephone"
-					label="Mobile"
-					value={mobile_telephone}
-					onChange={this.onChange}
-				/>
-
-				<InputField
-					name="email"
-					label="Email"
-					value={email}
-					onChange={this.onChange}
-				/>
-
-
-			</div>
-		)
-	}
-
+        <InputField
+          name="city"
+          label="City"
+          value={city}
+          onChange={this.onChange}
+        />
+        <InputField
+          name="telephone"
+          label="Telephone"
+          value={telephone}
+          onChange={this.onChange}
+        />
+        <InputField
+          name="mobileTelephone"
+          label="Mobile"
+          value={mobileTelephone}
+          onChange={this.onChange}
+        />
+        <InputField
+          name="email"
+          label="Email"
+          value={email}
+          onChange={this.onChange}
+        />
+      </div>
+    );
+  }
 }
+
+ContactData.defaultProps = {
+  onChange: () => {},
+  contactData: {
+    living_since: '',
+    street_name: '',
+    street_number: '',
+    zip_code: '',
+    city: '',
+    telephone: '',
+    mobile_telephone: '',
+    email: '',
+  },
+};
+
+ContactData.propTypes = {
+  onChange: PropTypes.func,
+  contactData: PropTypes.object,
+};
+
+export default ContactData;

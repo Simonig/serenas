@@ -1,46 +1,54 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-export default class AmountField extends Component {
+class AmountField extends Component {
+  formatAmount = (e) => {
+    const { value, name } = e.target;
+    const payload = { value, name };
 
-	constructor() {
-		super();
-		this.formatAmount = this.formatAmount.bind(this)
-	}
+    payload.value = Math.ceil(payload.value / 100) * 100;
+    if (payload.value > 25000) payload.value = 25000;
+    if (payload.value < 1000) payload.value = 1000;
+    this.props.onChange(payload);
+  };
 
-	formatAmount(e) {
-		const {value, name} = e.target;
-		const payload = {value, name};
+  render() {
+    const {
+      value, name, label, onChange,
+    } = this.props;
 
-		payload.value = Math.ceil(payload.value / 100) * 100;
-		if (payload.value > 25000) payload.value = 25000;
-		if (payload.value < 1000) payload.value = 1000;
-		this.props.onChange(payload)
+    return (
+      <div className="form-group">
 
-	}
+        <label htmlFor="amount">Amount</label>
 
-	render() {
-		const {value, name, label, onChange} = this.props;
-
-		return (
-
-			<div className="form-group">
-
-				<label>Amount</label>
-
-				<input
-					type="number"
-					id="amount"
-					placeholder={label}
-					value={value}
-					className="form-control"
-					step={100}
-					name={name}
-					onBlur={this.formatAmount}
-					onChange={(e) => onChange(e.target)}
-				/>
-			</div>
-
-
-		)
-	}
+        <input
+          type="number"
+          id="amount"
+          placeholder={label}
+          value={value}
+          className="form-control"
+          step={100}
+          name={name}
+          onBlur={this.formatAmount}
+          onChange={(e) => onChange(e.target)}
+        />
+      </div>
+    );
+  }
 }
+
+AmountField.defaultProps = {
+  onChange: () => {},
+  value: '',
+  label: '',
+};
+
+AmountField.propTypes = {
+  onChange: PropTypes.func,
+  value: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  label: PropTypes.string,
+};
+
+export default AmountField;

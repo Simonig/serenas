@@ -1,115 +1,171 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import InputField from './InputField';
 import Select from './Select';
 import DatePickerInput from './DatePickerInput';
 
 
-export default class PersonalData extends Component {
+class PersonalData extends Component {
+  constructor(props) {
+    super(props);
 
-	constructor(props) {
-		super(props);
-	}
+    const {
+      address, forename, surname, familyStatus, birthDate,
+      occupation, hasCreditCard, hasEcCard, hasRealEstate, housingType, mainEarner,
+      carOwner,
+    } = props.personalData;
 
-	onChange = (e) => {
-		this.props.onChange(e, "personal_data")
-	};
+    this.state = {
+      address: address || '',
+      forename: forename || '',
+      surname: surname || '',
+      familyStatus: familyStatus || '',
+      birthDate: birthDate || '',
+      occupation: occupation || '',
+      hasCreditCard: hasCreditCard || '',
+      hasEcCard: hasEcCard || '',
+      hasRealEstate: hasRealEstate || '',
+      housingType: housingType || '',
+      mainEarner: mainEarner || '',
+      carOwner: carOwner || '',
+    };
+  }
 
+  onChange = (e) => {
+    const { name, value } = e;
+    this.setState({ [name]: value }, () => {
+      this.props.onChange(this.state, 'personalData');
+    });
+  };
 
-	render() {
-		const {
-			address, forename, surname, family_status, birth_date,
-			occupation, has_credit_card, has_ec_card, has_real_estate, housing_type, main_earner,
-			car_owner
-		} = this.props.personalData;
+  render() {
+    const {
+      address, forename, surname, familyStatus, birthDate,
+      occupation, hasCreditCard, hasEcCard, hasRealEstate, housingType, mainEarner,
+      carOwner,
+    } = this.state;
 
-		const {family_status: familyStatusOpts, occupation: occupationOpts, yesNo, housing_type: housingTypeOpts} = this.props.options;
+    const {
+      familyStatus: familyStatusOpts, occupation: occupationOpts, yesNo, housingType: housingTypeOpts,
+    } = this.props.options;
 
-		return (
-			<div>
-				<InputField
-					name="forename"
-					label="Forename"
-					value={forename}
-					onChange={this.onChange}
-				/>
+    return (
+      <div>
+        <InputField
+          name="forename"
+          label="Forename"
+          value={forename}
+          onChange={this.onChange}
+        />
+        <InputField
+          name="surname"
+          label="Surname"
+          value={surname}
+          onChange={this.onChange}
+        />
+        <InputField
+          name="address"
+          label="Address"
+          value={address}
+          onChange={this.onChange}
+        />
+        <Select
+          name="familyStatus"
+          options={familyStatusOpts}
+          value={familyStatus}
+          label="family status"
+          onChange={this.onChange}
 
-				<InputField
-					name="surname"
-					label="Surname"
-					value={surname}
-					onChange={this.onChange}
-				/>
-				<Select
-					name="family_status"
-					options={familyStatusOpts}
-					value={family_status}
-					label="family status"
-					onChange={this.onChange}
+        />
+        <DatePickerInput
+          onChange={this.onChange}
+          name="birthDate"
+          label="Birth Date"
+          value={birthDate}
+        />
+        <Select
+          name="occupation"
+          options={occupationOpts}
+          value={occupation}
+          label="occupation"
+          onChange={this.onChange}
 
-				/>
-
-				<DatePickerInput
-					onChange={this.onChange}
-					name="birth_date"
-					label="Birth Date"
-					value={birth_date}
-				/>
-
-				<Select
-					name="occupation"
-					options={occupationOpts}
-					value={occupation}
-					label="occupation"
-					onChange={this.onChange}
-
-				/>
-
-				<Select
-					name="has_credit_card"
-					label="has_credit_card"
-					onChange={this.onChange}
-					options={yesNo}
-					value={has_credit_card}
-				/>
-				<Select
-					name="has_ec_card"
-					label="has_ec_card"
-					onChange={this.onChange}
-					options={yesNo}
-					value={has_ec_card}
-				/>
-
-				<Select
-					name="has_real_estate"
-					label="has_real_estate"
-					onChange={this.onChange}
-					options={yesNo}
-					value={has_real_estate}
-				/>
-
-				<Select
-					name="housing_type"
-					label="housing_type"
-					onChange={this.onChange}
-					options={housingTypeOpts}
-					value={housing_type}
-				/>
-				<Select
-					name="main_earner"
-					label="main_earner"
-					onChange={this.onChange}
-					options={yesNo}
-					value={main_earner}
-				/>
-				<Select
-					name="car_owner"
-					label="car_owner"
-					onChange={this.onChange}
-					options={yesNo}
-					value={car_owner}
-				/>
-			</div>
-		)
-	}
-
+        />
+        <Select
+          name="hasCreditCard"
+          label="has_credit_card"
+          onChange={this.onChange}
+          options={yesNo}
+          value={hasCreditCard}
+        />
+        <Select
+          name="hasEcCard"
+          label="has_ec_card"
+          onChange={this.onChange}
+          options={yesNo}
+          value={hasEcCard}
+        />
+        <Select
+          name="hasRealEstate"
+          label="has_real_estate"
+          onChange={this.onChange}
+          options={yesNo}
+          value={hasRealEstate}
+        />
+        <Select
+          name="housingType"
+          label="housing_type"
+          onChange={this.onChange}
+          options={housingTypeOpts}
+          value={housingType}
+        />
+        <Select
+          name="mainEarner"
+          label="main_earner"
+          onChange={this.onChange}
+          options={yesNo}
+          value={mainEarner}
+        />
+        <Select
+          name="carOwner"
+          label="car_owner"
+          onChange={this.onChange}
+          options={yesNo}
+          value={carOwner}
+        />
+      </div>
+    );
+  }
 }
+
+PersonalData.defaultProps = {
+  onChange: () => {},
+  personalData: {
+    address: '',
+    forename: '',
+    surname: '',
+    familyStatus: '',
+    birthDate: '',
+    occupation: '',
+    hasCreditCard: '',
+    hasEcCard: '',
+    hasRealEstate: '',
+    housingType: '',
+    mainEarner: '',
+    carOwner: '',
+  },
+  options: {
+    familyStatus: [],
+    occupation: [],
+    yesNo: [],
+    housingType: [],
+  },
+};
+
+PersonalData.propTypes = {
+  onChange: PropTypes.func,
+  personalData: PropTypes.object,
+  options: PropTypes.object,
+};
+
+export default PersonalData;

@@ -1,44 +1,63 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import InputField from './InputField';
 
-export default class BankData extends Component {
+class BankData extends Component {
+  constructor(props) {
+    super(props);
 
-	constructor(props) {
-		super(props);
-	}
+    const { bic, iban } = props.bankData;
 
-	onChange = (e) => {
-		this.props.onChange(e, "expenses_data")
-	};
+    this.state = {
+      bic: bic || '',
+      iban: iban || '',
+    };
+  }
 
+  onChange = (e) => {
+    const { name, value } = e;
+    this.setState({ [name]: value }, () => {
+      this.props.onChange(this.state, 'expensesData');
+    });
+  };
 
-	render() {
-		const {
-			bic, iban,
-		} = this.props.bankData;
+  render() {
+    const {
+      bic, iban,
+    } = this.state;
 
-		return (
-			<div>
-				<h1>Bank Data</h1>
+    return (
+      <div>
+        <h1>Bank Data</h1>
 
-
-				<InputField
-					name="iban"
-					label="iban"
-					value={iban}
-					onChange={this.onChange}
-				/>
-				<InputField
-					name="bic"
-					label="bic"
-					value={bic}
-					onChange={this.onChange}
-				/>
-
-
-
-			</div>
-		)
-	}
-
+        <InputField
+          name="iban"
+          label="iban"
+          value={iban}
+          onChange={this.onChange}
+        />
+        <InputField
+          name="bic"
+          label="bic"
+          value={bic}
+          onChange={this.onChange}
+        />
+      </div>
+    );
+  }
 }
+
+BankData.defaultProps = {
+  onChange: () => {},
+  bankData: {
+    iban: '',
+    bic: '',
+  },
+};
+
+BankData.propTypes = {
+  onChange: PropTypes.func,
+  bankData: PropTypes.object,
+};
+
+export default BankData;

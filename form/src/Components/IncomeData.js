@@ -1,61 +1,89 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import InputField from './InputField';
 
-export default class IncomeData extends Component {
+class IncomeData extends Component {
+  constructor(props) {
+    super(props);
 
-	constructor(props) {
-		super(props);
+    const {
+      total, netIncome, childBenefits, other,
+    } = props.incomeData;
 
-		this.onChange = this.onChange.bind(this);
-	}
+    this.state = {
+      total: total || '',
+      netIncome: netIncome || '',
+      childBenefits: childBenefits || '',
+      other: other || '',
+    };
+  }
 
-	onChange(e) {
-		this.props.onChange(e, "income")
-	}
+  onChange = (e) => {
+    const { name, value } = e;
+    this.setState({ [name]: value }, () => {
+      this.props.onChange(this.state, 'income');
+    });
+  };
 
 
-	render() {
-		const {
-			total, net_income, child_benefits, other
-		} = this.props.incomeData;
+  render() {
+    const {
+      total, netIncome, childBenefits, other,
+    } = this.state;
 
-		return (
-			<div>
-				<h1>Income Data</h1>
-				<InputField
-					type="number"
-					name="total"
-					label="Total"
-					value={total}
-					onChange={this.onChange}
-				/>
+    return (
+      <div>
+        <h1>Income Data</h1>
+        <InputField
+          type="number"
+          name="total"
+          label="Total"
+          value={total}
+          onChange={this.onChange}
+        />
 
-				<InputField
-					type="number"
-					name="net_income"
-					label="Net Income"
-					value={net_income}
-					onChange={this.onChange}
-				/>
+        <InputField
+          type="number"
+          name="netIncome"
+          label="Net Income"
+          value={netIncome}
+          onChange={this.onChange}
+        />
 
-				<InputField
-					type="number"
-					name="child_benefits"
-					label="Child Benefits"
-					value={child_benefits}
-					onChange={this.onChange}
-				/>
+        <InputField
+          type="number"
+          name="childBenefits"
+          label="Child Benefits"
+          value={childBenefits}
+          onChange={this.onChange}
+        />
 
-				<InputField
-					type="number"
-					name="other"
-					label="other"
-					value={other}
-					onChange={this.onChange}
-				/>
+        <InputField
+          type="number"
+          name="other"
+          label="other"
+          value={other}
+          onChange={this.onChange}
+        />
 
-			</div>
-		)
-	}
-
+      </div>
+    );
+  }
 }
+
+IncomeData.defaultProps = {
+  onChange: () => {},
+  incomeData: {
+    total: '',
+    netIncome: '',
+    childBenefits: '',
+    other: '',
+  },
+};
+
+IncomeData.propTypes = {
+  onChange: PropTypes.func,
+  incomeData: PropTypes.object,
+};
+
+export default IncomeData;
