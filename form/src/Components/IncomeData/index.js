@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import InputField from './InputField';
+import InputField from '../InputField';
 
 class IncomeData extends Component {
   constructor(props) {

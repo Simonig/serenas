@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import InputField from './InputField';
-import DatePickerInput from './DatePickerInput';
+import InputField from '../InputField';
+import DatePickerInput from '../DatePickerInput';
 
 class ContactData extends Component {
   constructor(props) {

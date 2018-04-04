@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import InputField from './InputField';
-import Select from './Select';
-import DatePickerInput from './DatePickerInput';
-import { FAMILY_STATUS_OPTIONS, HOUSING_TYPE_OPTIONS, OCCUPATION_OPTIONS, YES_NO_OPTIONS } from '../constants';
+import InputField from '../InputField';
+import Select from '../Select';
+import DatePickerInput from '../DatePickerInput';
+import { FAMILY_STATUS_OPTIONS, HOUSING_TYPE_OPTIONS, OCCUPATION_OPTIONS, YES_NO_OPTIONS } from '../../constants';
 
 
 class PersonalData extends Component {

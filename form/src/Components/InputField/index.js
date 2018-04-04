@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 
-class TextField extends Component {
+class InputField extends Component {
   render() {
     const {
       value, label, onChange, name, type,
@@ -27,13 +27,13 @@ class TextField extends Component {
   }
 }
 
-TextField.defaultProps = {
+InputField.defaultProps = {
   onChange: () => {},
   label: '',
   type: 'text',
 };
 
-TextField.propTypes = {
+InputField.propTypes = {
   value: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
@@ -44,4 +44,4 @@ TextField.propTypes = {
   type: PropTypes.string,
 };
 
-export default TextField;
+export default InputField;

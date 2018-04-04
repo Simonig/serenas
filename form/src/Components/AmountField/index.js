@@ -21,7 +21,7 @@ class AmountField extends Component {
     return (
       <div className="form-group">
 
-        <label htmlFor="amount">Amount</label>
+        <label>Amount</label>
 
         <input
           type="number"
@@ -41,13 +41,13 @@ class AmountField extends Component {
 
 AmountField.defaultProps = {
   onChange: () => {},
-  value: '',
+  value: 1000,
   label: '',
 };
 
 AmountField.propTypes = {
   onChange: PropTypes.func,
-  value: PropTypes.string,
+  value: PropTypes.number,
   name: PropTypes.string.isRequired,
   label: PropTypes.string,
 };
