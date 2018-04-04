@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import InputField from './InputField';
 import Select from './Select';
 import DatePickerInput from './DatePickerInput';
+import { FAMILY_STATUS_OPTIONS, HOUSING_TYPE_OPTIONS, OCCUPATION_OPTIONS, YES_NO_OPTIONS } from '../constants';
 
 
 class PersonalData extends Component {
@@ -20,7 +21,7 @@ class PersonalData extends Component {
       forename: forename || '',
       surname: surname || '',
       familyStatus: familyStatus || '',
-      birthDate: birthDate || '',
+      birthDate,
       occupation: occupation || '',
       hasCreditCard: hasCreditCard || '',
       hasEcCard: hasEcCard || '',
@@ -45,9 +46,6 @@ class PersonalData extends Component {
       carOwner,
     } = this.state;
 
-    const {
-      familyStatus: familyStatusOpts, occupation: occupationOpts, yesNo, housingType: housingTypeOpts,
-    } = this.props.options;
 
     return (
       <div>
@@ -71,7 +69,7 @@ class PersonalData extends Component {
         />
         <Select
           name="familyStatus"
-          options={familyStatusOpts}
+          options={FAMILY_STATUS_OPTIONS}
           value={familyStatus}
           label="family status"
           onChange={this.onChange}
@@ -85,7 +83,7 @@ class PersonalData extends Component {
         />
         <Select
           name="occupation"
-          options={occupationOpts}
+          options={OCCUPATION_OPTIONS}
           value={occupation}
           label="occupation"
           onChange={this.onChange}
@@ -95,42 +93,42 @@ class PersonalData extends Component {
           name="hasCreditCard"
           label="has_credit_card"
           onChange={this.onChange}
-          options={yesNo}
+          options={YES_NO_OPTIONS}
           value={hasCreditCard}
         />
         <Select
           name="hasEcCard"
           label="has_ec_card"
           onChange={this.onChange}
-          options={yesNo}
+          options={YES_NO_OPTIONS}
           value={hasEcCard}
         />
         <Select
           name="hasRealEstate"
           label="has_real_estate"
           onChange={this.onChange}
-          options={yesNo}
+          options={YES_NO_OPTIONS}
           value={hasRealEstate}
         />
         <Select
           name="housingType"
           label="housing_type"
           onChange={this.onChange}
-          options={housingTypeOpts}
+          options={HOUSING_TYPE_OPTIONS}
           value={housingType}
         />
         <Select
           name="mainEarner"
           label="main_earner"
           onChange={this.onChange}
-          options={yesNo}
+          options={YES_NO_OPTIONS}
           value={mainEarner}
         />
         <Select
           name="carOwner"
           label="car_owner"
           onChange={this.onChange}
-          options={yesNo}
+          options={YES_NO_OPTIONS}
           value={carOwner}
         />
       </div>
@@ -145,7 +143,7 @@ PersonalData.defaultProps = {
     forename: '',
     surname: '',
     familyStatus: '',
-    birthDate: '',
+    birthDate: undefined,
     occupation: '',
     hasCreditCard: '',
     hasEcCard: '',
@@ -154,18 +152,11 @@ PersonalData.defaultProps = {
     mainEarner: '',
     carOwner: '',
   },
-  options: {
-    familyStatus: [],
-    occupation: [],
-    yesNo: [],
-    housingType: [],
-  },
 };
 
 PersonalData.propTypes = {
   onChange: PropTypes.func,
   personalData: PropTypes.object,
-  options: PropTypes.object,
 };
 
 export default PersonalData;

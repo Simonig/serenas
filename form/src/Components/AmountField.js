@@ -9,6 +9,7 @@ class AmountField extends Component {
     payload.value = Math.ceil(payload.value / 100) * 100;
     if (payload.value > 25000) payload.value = 25000;
     if (payload.value < 1000) payload.value = 1000;
+
     this.props.onChange(payload);
   };
 

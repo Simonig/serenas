@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import moment from 'moment';
 import DatePicker from 'react-datepicker';
 import PropTypes from 'prop-types';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -35,14 +36,17 @@ class DatePickerInput extends Component {
 DatePickerInput.defaultProps = {
   onChange: () => {},
   name: '',
-  value: '',
+  value: moment(),
   label: '',
 };
 
 DatePickerInput.propTypes = {
   onChange: PropTypes.func,
   name: PropTypes.string,
-  value: PropTypes.string,
+  value: PropTypes.oneOfType([
+    PropTypes.instanceOf(Date),
+    PropTypes.object,
+  ]),
   label: PropTypes.string,
 };
 

@@ -19,7 +19,7 @@ class EmployerData extends Component {
       phone: phone || '',
       zip: zip || '',
       city: city || '',
-      since: since || '',
+      since,
       employmentStatus: employmentStatus || '',
     };
   }
@@ -47,28 +47,24 @@ class EmployerData extends Component {
           value={company}
           onChange={this.onChange}
         />
-
         <InputField
           name="street"
           label="street"
           value={street}
           onChange={this.onChange}
         />
-
         <InputField
           name="phone"
           label="phone"
           value={phone}
           onChange={this.onChange}
         />
-
         <InputField
           name="zip"
           label="zip"
           value={zip}
           onChange={this.onChange}
         />
-
         <InputField
           name="city"
           label="city"
@@ -80,7 +76,6 @@ class EmployerData extends Component {
           label="since"
           value={since}
         />
-
         <InputField
           name="employmentStatus"
           label="employment_status"
@@ -101,7 +96,7 @@ EmployerData.defaultProps = {
     phone: '',
     zip: '',
     city: '',
-    since: '',
+    since: undefined,
     employmentStatus: '',
   },
 };

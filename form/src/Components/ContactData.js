@@ -13,7 +13,7 @@ class ContactData extends Component {
     } = this.props.contactData;
 
     this.state = {
-      livingSince: livingSince || '',
+      livingSince,
       streetName: streetName || '',
       streetNumber: streetNumber || '',
       zipCode: zipCode || '',
@@ -65,8 +65,6 @@ class ContactData extends Component {
           value={zipCode}
           onChange={this.onChange}
         />
-
-
         <InputField
           name="city"
           label="City"
@@ -99,7 +97,7 @@ class ContactData extends Component {
 ContactData.defaultProps = {
   onChange: () => {},
   contactData: {
-    living_since: '',
+    living_since: undefined,
     street_name: '',
     street_number: '',
     zip_code: '',
