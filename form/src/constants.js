@@ -65,10 +65,10 @@ export const EMPLOYMENT_STATUS_OPTIONS = [
 
 export const INITIAL_STATE = {
   loanAsked: 1000,
-  duration: 12,
+  duration: '12',
   externalId: 'ext_1',
-  rsv: false,
-  collectionDay: 1,
+  rsv: 'false',
+  collectionDay: '1',
   isAcceptedTermsOfService: false,
   isAcceptedSolvencyRetrieval: false,
 
