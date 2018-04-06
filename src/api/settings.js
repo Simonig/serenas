@@ -1,42 +1,33 @@
 /**
  * Module dependencies.
  */
-import conf from 'conf';
+import conf from './conf';
 import Logger from './helpers/Logger';
-import Common from './helpers/Common';
-let settings = null;
+import { getEnv } from './helpers/Common';
 
-/**
- * Keep the configuration of the server
- * @constructor
- */
-function Settings() {
-    settings = {};
-    const env = Common.getEnv();
+class Settings {
+  constructor() {
+    this.settings = {};
 
-    Logger.info('Environment: ' + env.toUpperCase());
+    const env = getEnv();
+    Logger.info(`Environment: ${env.toUpperCase()}`);
 
-    set('env', env);
-    const envSettings = conf.settings[env];
+    this.set('env', env);
+    const envSettings = conf[env];
 
-    for (let name in envSettings) {
-        if (envSettings.hasOwnProperty(name)) {
-            set(name, envSettings[name]);
-        }
-    }
-    return settings;
+    const settingKeys = Object.keys(envSettings);
+
+    settingKeys.forEach((name) => {
+      this.set(name, envSettings[name]);
+    });
+  }
+
+  set = (key, val) => {
+    this.settings[key] = val;
+  };
+
+  get = key => this.settings[key];
 }
 
-const set = function(key, val) {
-    if (settings == null) {
-        settings = new Settings();
-    }
-    settings[key] = val;
-};
+export default Settings;
 
-module.exports.get = function(key) {
-    if (settings == null) {
-        settings = new Settings();
-    }
-    return settings[key];
-};

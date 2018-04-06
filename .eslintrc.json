@@ -1,0 +1,11 @@
+{
+  "env": {
+    "node": true,
+    "jest": true
+  },
+  "extends": "airbnb-base",
+  "parser": "babel-eslint",
+  "rules": {
+    "no-underscore-dangle": [2, { "allow": ["_id", "_type"] }]
+  }
+}

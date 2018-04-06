@@ -1,6 +1,7 @@
-import Logger from '../helpers/Logger';
-import Common from 'helpers/Common';
-import AuxmoneyService from '../services/auxmoney'
+import { handleError } from '../helpers/Common';
+import AuxmoneyService from '../services/auxmoney';
+import { camelCaseKeysToUnderscore } from '../helpers/Transformations';
+import { convertMomentToDate } from '../../../form/src/Utils/Transforms';
 
 /**
  * module - description
@@ -10,16 +11,19 @@ import AuxmoneyService from '../services/auxmoney'
  * @return {http}     description
  */
 
-export async function postForm (req, res) {
+// eslint-disable-next-line import/prefer-default-export
+export async function postForm(req, res) {
+  try {
+    const data = req.body;
+    const toSend = camelCaseKeysToUnderscore(data);
+    const normalizedToSend = convertMomentToDate(toSend);
 
-	try {
-		const data = req.body.data;
-		const response = await AuxmoneyService.postForm(data);
-		res.status(200);
-		res.json(response);
-	} catch (err) {
-		return Common.handleError(res, err, __filename);
-	}
+    const response = await AuxmoneyService.postForm(normalizedToSend);
+    res.status(200);
 
-};
+    return res.json(response);
+  } catch (err) {
+    return handleError(res, err, __filename);
+  }
+}
 

@@ -1,22 +1,19 @@
 import axios from 'axios';
-import { settings } from 'helpers/Common';
-
+import { settings } from '../helpers/Common';
 
 
 export class VersaApi {
-	ApiKey = settings().get('versaApiKey');
-	BaseUrl = settings().get('versaUrl');
+  ApiKey = settings.get('versaApiKey');
+  BaseUrl = settings.get('versaUrl');
 
-	getProducts = async () => {
-
-		try{
-			 return await axios.get(`${this.BaseUrl}products.json`);
-
-		} catch(e){
-			console.log(e)
-		}
-	}
+  getProducts = async () => {
+    try {
+      return await axios.get(`${this.BaseUrl}products.json`);
+    } catch (e) {
+      return e;
+    }
+  }
 }
 
 
-export default new AuxmoneyService();
+export default new VersaApi();

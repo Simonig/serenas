@@ -1,21 +1,24 @@
 import axios from 'axios';
-import {settings} from 'helpers/Common';
+import { settings } from '../helpers/Common';
 
 
-export class AuxmoneyService {
+export class AuxmoneyApi {
+  postForm = async (form) => {
+    const url = settings.get('auxmoneyUrl');
+    const token = settings.get('auxmoneyKey');
 
-	postForm = async(form) => {
-		const url = settings().get('auxmoneyUrl');
-
-		try {
-			return await axios.post(url, form);
-
-		} catch (e) {
-			console.log(e)
-		}
-	}
+    try {
+      return await axios.post(url, form, {
+        headers: {
+          urlkey: token,
+        },
+      });
+    } catch (e) {
+      return e.response.data;
+    }
+  }
 }
 
 
-export default new AuxmoneyService();
+export default new AuxmoneyApi();
 

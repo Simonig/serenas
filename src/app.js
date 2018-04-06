@@ -1,33 +1,36 @@
-import Common from './api/helpers/Common';
-import Logger from './api/helpers/Logger';
 import path from 'path';
 import mongoose from 'mongoose';
-import express from 'express'
+import express from 'express';
+import bodyParser from 'body-parser';
 
-import {postForm } from './api/controllers/form';
+import { settings } from './api/helpers/Common';
+import Logger from './api/helpers/Logger';
 
-mongoose.connect(Common.settings().get('db_url'));
+import { postForm } from './api/controllers/form';
+
+// Mongodb Connection
+mongoose.connect(settings.get('dbUrl'));
 mongoose.Promise = global.Promise;
 
-const app = require('express')();
 
+// Express routes and middleware
+const app = express();
+
+app.use(bodyParser.json());
 
 app.use(express.static(path.resolve(__dirname, '..', 'form', 'build')));
 
 app.get('/', (req, res) => {
-	res.sendFile(path.resolve(__dirname, '..', 'form', 'build'), 'index.html');
+  res.sendFile(path.resolve(__dirname, '..', 'form', 'build'), 'index.html');
 });
-
-
 
 app.post('/submitForm', postForm);
 
-const host = Common.settings().get('host');
-const port = Common.settings().get('port');
 
-
-app.listen(port, function () {
-	Logger.info(`Api running http://${host}:${port}`);
+// Express serve
+const host = settings.get('host');
+const port = settings.get('port');
+app.listen(port, () => {
+  Logger.info(`Api running http://${host}:${port}`);
 });
-
 
