@@ -64,46 +64,46 @@ export const EMPLOYMENT_STATUS_OPTIONS = [
 ];
 
 export const INITIAL_STATE = {
+  externalId: 'ext_1',
   loanAsked: 1000,
   duration: '12',
-  externalId: 'ext_1',
-  rsv: 'false',
+  rsv: '0',
   collectionDay: '1',
-  isAcceptedTermsOfService: false,
-  isAcceptedSolvencyRetrieval: false,
+  isAcceptedTermsOfService: true,
+  isAcceptedSolvencyRetrieval: true,
 
   category: 0,
   personalData: {
     // salutation 1: Herr 2: Frau
     address: 1,
+    forename: 'Max',
+    surname: 'Mustermann',
+    familyStatus: '2',
     birthDate: moment(),
-    forename: '',
-    surname: '',
-    familyStatus: '',
     nationality: 'DE',
-    occupation: 0,
-    hasCreditCard: 0,
-    hasEcCard: 0,
-    hasRealEstate: 0,
-    housingType: 0,
-    mainEarner: 0,
-    carOwner: 0,
+    occupation: '2',
+    hasCreditCard: '1',
+    hasEcCard: '1',
+    hasRealEstate: '1',
+    housingType: '1',
+    mainEarner: '1',
+    carOwner: '1',
   },
   contactData: {
     livingSince: moment(), // not required
-    streetName: '',
-    streetNumber: '',
-    zipCode: '',
-    city: '',
-    telephone: '',
-    mobileTelephone: '', // not required
-    email: '',
+    streetName: 'Königsallee',
+    streetNumber: '60 F',
+    zipCode: '40212',
+    city: 'Düsseldorf',
+    telephone: '01234567890',
+    mobileTelephone: '0987654321', // not required
+    email: 'b1-test@auxmoney.com',
   },
   income: {
-    total: 0,
-    netIncome: 0,
-    childBenefits: 0,
-    other: 0,
+    total: 170030,
+    netIncome: 100000,
+    childBenefits: 50030,
+    other: 20000,
   },
   expenses: {
     totalExpenses: 135000,
@@ -120,13 +120,13 @@ export const INITIAL_STATE = {
     street: 'Königsallee 60 F',
     phone: '01234567890',
     zip: '40212',
-    city: '',
+    city: 'Düsseldorf',
     since: moment(),
     employmentStatus: 1,
   },
   bankData: {
-    iban: '',
-    bic: '',
+    iban: 'DE12500105170648489890',
+    bic: 'BYLADEM1001',
   },
 
 };

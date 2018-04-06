@@ -11,6 +11,9 @@ import EmployerData from '../../Components/EmployerData';
 import BankData from '../../Components/BankData';
 import AmountField from '../../Components/AmountField';
 import Select from '../../Components/Select';
+import { createStructuredSelector } from "reselect";
+import { connect } from 'react-redux';
+import { formActions } from '../../Redux/FormReducer';
 
 class FullForm extends Component {
   constructor(props) {
@@ -34,13 +37,14 @@ class FullForm extends Component {
   };
 
   submitForm = () => {
+    this.props.tryToSend(this.state);
   };
 
   render() {
     const {
       loanAsked, duration, collectionDay, rsv,
       isAcceptedTermsOfService, personalData, contactData,
-      income, expenses, employerData, bankData,
+      income, expenses, employerData, bankData, isAcceptedSolvencyRetrieval,
     } = this.state;
 
     return (
@@ -95,10 +99,27 @@ class FullForm extends Component {
                     value: !isAcceptedTermsOfService,
                   })}
                   name="isAcceptedTermsOfService"
+                  defaultChecked={isAcceptedTermsOfService}
                   value={isAcceptedTermsOfService}
                   type="checkbox"
                 />
                 <label className="form-check-label">Terms and Conditions</label>
+              </div>
+
+              <div className="form-check">
+                <input
+                  className="form-check-input"
+                  onClick={(e) => this.onChange({
+                    name: e.target.name,
+                    value: !isAcceptedSolvencyRetrieval,
+                  })}
+                  name="isAcceptedSolvencyRetrieval"
+                  defaultChecked={isAcceptedSolvencyRetrieval}
+                  value={isAcceptedSolvencyRetrieval}
+                  type="checkbox"
+                />
+                <label className="form-check-label">Accept solvency retrieval</label>
+
               </div>
 
               <h1>Personal Data</h1>
@@ -148,4 +169,13 @@ class FullForm extends Component {
   }
 }
 
-export default FullForm;
+
+function mapDispatchToProps(dispatch) {
+  return {
+    tryToSend: (formData) => dispatch(formActions.sendRequest(formData)),
+  };
+}
+
+const withConnect = connect(null, mapDispatchToProps);
+
+export default withConnect(FullForm);

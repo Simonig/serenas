@@ -27,7 +27,7 @@ class ContactData extends Component {
   onChange = (e) => {
     const { name, value } = e;
     this.setState({ [name]: value }, () => {
-      this.props.onChange(e, 'contactData');
+      this.props.onChange(this.state, 'contactData');
     });
   };
 
