@@ -11,6 +11,14 @@
 }
 
 .jumbotron {
+
+}
+
+.nav {
   background: white;
-  border-bottom: solid 20px;
+  border-bottom: solid 3px;
+
+  .nav-item {
+    width: 200px;
+  }
 }

@@ -8,7 +8,7 @@ export const reducers = combineReducers({
   form: formReducer,
 });
 
-export default () => {
+export default (initialState, context = {}) => {
   const middleware = [];
   const enhancers = [];
 
@@ -21,7 +21,7 @@ export default () => {
   const store = createStore(reducers, compose(...enhancers));
 
   // kick off root saga
-  sagaMiddleware.run(rootSaga);
+  sagaMiddleware.run(rootSaga, context);
 
   return store;
 };

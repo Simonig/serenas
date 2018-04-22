@@ -33,7 +33,6 @@ function formReducer(state = initialState, action) {
     case SEND_FORM_REQUEST:
       return state;
     case SEND_FORM_SUCCESS:
-      console.log("SUCCESS", action);
       return state;
     case SEND_FORM_FAILURE:
       return state.merge(fromJS({

@@ -1,21 +1,38 @@
 import React, { Component } from 'react';
-import { Provider } from 'react-redux';
-import './App.css';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-import createStore from './Redux';
+import './App.scss';
+import images from './Images';
+import ProviderWithRouter from './Hoc/ProviderWithRouter';
+
 import FullForm from './Containers/FullForm';
-
-const store = createStore();
+import SuccessPage from './Containers/Success';
 
 // eslint-disable-next-line react/prefer-stateless-function
 class App extends Component {
   render() {
     return (
-      <Provider store={store}>
-        <div className="App">
-          <FullForm />
-        </div>
-      </Provider>
+      <Router>
+        <ProviderWithRouter>
+          <div className="App">
+            <ul className="nav">
+              <li>
+                <img
+                  className="nav-item"
+                  src={images.logo}
+                  alt="Serena's"
+                />
+              </li>
+            </ul>
+            <div className="container">
+              <Route exact path="/" component={FullForm} />
+              <Route path="/success" component={SuccessPage} />
+            </div>
+          </div>
+
+        </ProviderWithRouter>
+      </Router>
+
     );
   }
 }
