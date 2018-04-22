@@ -9,7 +9,7 @@ const store = createStore();
 
 class ProviderWithRouter extends Component {
   static propTypes = {
-    history: PropTypes.func,
+    history: PropTypes.object,
     children: PropTypes.element,
   };
 

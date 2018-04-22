@@ -1,12 +1,8 @@
 import React, { Component, Fragment } from 'react';
+import { Route, Link, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import {
-  COLLECTION_DAY_OPTIONS,
-  DURATION_OPTIONS,
-  INITIAL_STATE,
-  YES_NO_OPTIONS,
-} from '../../constants';
+import { INITIAL_STATE } from '../../constants';
 
 import PersonalData from '../../Components/PersonalData';
 import ContactData from '../../Components/ContactData';
@@ -14,14 +10,15 @@ import IncomeData from '../../Components/IncomeData';
 import ExpensesData from '../../Components/ExpensesData';
 import EmployerData from '../../Components/EmployerData';
 import BankData from '../../Components/BankData';
-import AmountField from '../../Components/AmountField';
-import Select from '../../Components/Select';
+import LoanData from '../../Components/LoanData';
 import { formActions } from '../../Redux/FormReducer';
 
 class FullForm extends Component {
   static propTypes = {
     tryToSend: PropTypes.func,
-  }
+    match: PropTypes.object,
+    location: PropTypes.object,
+  };
 
   constructor(props) {
     super(props);
@@ -49,117 +46,154 @@ class FullForm extends Component {
 
   render() {
     const {
-      loanAsked, duration, collectionDay, rsv,
-      isAcceptedTermsOfService, personalData, contactData,
-      income, expenses, employerData, bankData, isAcceptedSolvencyRetrieval,
+      personalData, contactData,
+      income, expenses, employerData, bankData, ...loanData
     } = this.state;
+    const { match, location } = this.props;
 
     return (
       <Fragment>
-
-
         <div className="row">
-          <div className="col-sm-8 offset-sm-2">
+          <div className="col-sm-4">
+            <div className="nav flex-column nav-pills" role="tablist">
+              <Link
+                to="/form"
+                className={`${location.pathname === '/form' ? 'active' : ''} nav-link`}
+              >
+                1.Loan
+              </Link>
+              <Link
+                to="/form/personal_data"
+                className={`${location.pathname === '/form/personal_data' ? 'active' : ''} nav-link`}
+              >
+                2.Personal Data
+              </Link>
 
-            <AmountField
-              onChange={this.onChange}
-              name="loanAsked"
-              value={loanAsked}
-              label="Loan"
-            />
-            <Select
-              name="duration"
-              label="Duration"
-              onChange={this.onChange}
-              options={DURATION_OPTIONS}
-              value={duration}
-            />
-            <Select
-              name="collectionDay"
-              label="Collection Day"
-              onChange={this.onChange}
-              options={COLLECTION_DAY_OPTIONS}
-              value={collectionDay}
-            />
-            <Select
-              name="rsv"
-              label="Rsv"
-              onChange={this.onChange}
-              options={YES_NO_OPTIONS}
-              value={rsv}
-            />
+              <Link
+                to="/form/contact"
+                className={`${location.pathname === '/form/contact' ? 'active' : ''} nav-link`}
+              >
+                3.Contact Data
+              </Link>
 
-
-            <div className="form-check">
-              <input
-                className="form-check-input"
-                onClick={(e) => this.onChange({
-                  name: e.target.name,
-                  value: !isAcceptedTermsOfService,
-                })}
-                name="isAcceptedTermsOfService"
-                defaultChecked={isAcceptedTermsOfService}
-                value={isAcceptedTermsOfService}
-                type="checkbox"
-              />
-              <label className="form-check-label">Terms and Conditions</label>
+              <Link
+                to="/form/income"
+                className={`${location.pathname === '/form/income' ? 'active' : ''} nav-link`}
+              >
+                4.Income Data
+              </Link>
             </div>
+          </div>
+          <div className="col-sm-8 ">
+            <Switch>
+              <Route exact path={`${match.path}/`}>
+                <Fragment>
+                  <LoanData
+                    personalData={loanData}
+                    onChange={this.onChange}
+                  />
 
-            <div className="form-check">
-              <input
-                className="form-check-input"
-                onClick={(e) => this.onChange({
-                  name: e.target.name,
-                  value: !isAcceptedSolvencyRetrieval,
-                })}
-                name="isAcceptedSolvencyRetrieval"
-                defaultChecked={isAcceptedSolvencyRetrieval}
-                value={isAcceptedSolvencyRetrieval}
-                type="checkbox"
-              />
-              <label className="form-check-label">Accept solvency retrieval</label>
+                  <Link to="/form/personal_data">
+                    <button type="button" className="btn btn-dark">
+                      Continue
+                    </button>
+                  </Link>
+                </Fragment>
+              </Route>
 
-            </div>
 
-            <h1>Personal Data</h1>
+              <Route path={`${match.path}/personal_data`}>
+                <Fragment>
+                  <h1>Personal Data</h1>
 
-            <PersonalData
-              personalData={personalData}
-              onChange={this.onChange}
-            />
+                  <PersonalData
+                    personalData={personalData}
+                    onChange={this.onChange}
+                  />
+                  <Link to="/form/contact">
+                    <button type="button" className="btn btn-dark">
+                      Continue
+                    </button>
+                  </Link>
+                </Fragment>
+              </Route>
+              <Route path={`${match.path}/contact`}>
+                <Fragment>
+                  <ContactData
+                    contactData={contactData}
+                    onChange={this.onChange}
+                  />
+                  <Link to="/form/expenses">
+                    <button type="button" className="btn btn-dark">
+                      Continue
+                    </button>
 
-            <ContactData
-              contactData={contactData}
-              onChange={this.onChange}
-            />
-            <IncomeData
-              incomeData={income}
-              onChange={this.onChange}
-            />
+                  </Link>
+                </Fragment>
+              </Route>
 
-            <ExpensesData
-              expensesData={expenses}
-              onChange={this.onChange}
-            />
+              <Route path={`${match.path}/income`}>
+                <Fragment>
+                  <IncomeData
+                    incomeData={income}
+                    onChange={this.onChange}
+                  />
+                  <Link to="/form/expenses">
+                    <button type="button" className="btn btn-dark">
+                      Continue
+                    </button>
 
-            <EmployerData
-              employerData={employerData}
-              onChange={this.onChange}
-            />
+                  </Link>
+                </Fragment>
+              </Route>
 
-            <BankData
-              bankData={bankData}
-              onChange={this.onChange}
-            />
+              <Route path={`${match.path}/expenses`}>
+                <Fragment>
+                  <ExpensesData
+                    expensesData={expenses}
+                    onChange={this.onChange}
+                  />
+                  <Link to="/form/employer">
+                    <button type="button" className="btn btn-dark">
+                      Continue
+                    </button>
 
-            <button
-              onClick={this.submitForm}
-              type="button"
-              className="btn btn-dark"
-            >
-              Send
-            </button>
+                  </Link>
+                </Fragment>
+              </Route>
 
+
+              <Route path={`${match.path}/employer`}>
+                <Fragment>
+                  <EmployerData
+                    employerData={employerData}
+                    onChange={this.onChange}
+                  />
+                  <Link to="/form/bank">
+                    <button type="button" className="btn btn-dark">
+                      Continue
+                    </button>
+
+                  </Link>
+                </Fragment>
+              </Route>
+
+              <Route path={`${match.path}/bank`}>
+                <Fragment>
+                  <BankData
+                    bankData={bankData}
+                    onChange={this.onChange}
+                  />
+                  <button
+                    onClick={this.submitForm}
+                    type="button"
+                    className="btn btn-dark"
+                  >
+                    Send
+                  </button>
+                </Fragment>
+              </Route>
+            </Switch>
           </div>
         </div>
       </Fragment>

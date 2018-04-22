@@ -10,15 +10,21 @@
   margin-left: 0;
 }
 
-.jumbotron {
-
-}
-
-.nav {
+ul.nav {
   background: white;
   border-bottom: solid 3px;
+  margin-bottom: 15px;
 
   .nav-item {
     width: 200px;
+  }
+}
+
+a {
+  color: #403a3a;
+}
+.nav-pills {
+  .nav-link.active, .nav-pills .show > .nav-link {
+    background: #403a3a;
   }
 }

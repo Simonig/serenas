@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 
 import './App.scss';
 import images from './Images';
@@ -25,7 +25,10 @@ class App extends Component {
               </li>
             </ul>
             <div className="container">
-              <Route exact path="/" component={FullForm} />
+              <Route path="/">
+                <Redirect to="/form" />
+              </Route>
+              <Route path="/form" component={FullForm} />
               <Route path="/success" component={SuccessPage} />
             </div>
           </div>

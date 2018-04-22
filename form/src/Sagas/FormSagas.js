@@ -7,7 +7,7 @@ export function* sendForm(api, { routerHistory }, action) {
     const response = yield call(api.sendForm, action.data);
 
     yield put(formActions.sendSuccess(response.data));
-    routerHistory.push('/success')
+    routerHistory.push('/success');
   } catch (err) {
     const statusCode = err.response && err.response.status;
     const msg = convertStatusToError(statusCode);
