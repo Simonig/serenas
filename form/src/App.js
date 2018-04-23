@@ -24,7 +24,7 @@ class App extends Component {
                 />
               </li>
             </ul>
-            <div className="container">
+            <div className="container-fluid serenas__container">
               <Route path="/">
                 <Redirect to="/form" />
               </Route>

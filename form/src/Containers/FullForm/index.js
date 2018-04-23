@@ -53,8 +53,8 @@ class FullForm extends Component {
 
     return (
       <Fragment>
-        <div className="row">
-          <div className="col-sm-4">
+        <div className="row serenas__container--row">
+          <div className="col-sm-3 serenas__sidebar">
             <div className="nav flex-column nav-pills" role="tablist">
               <Link
                 to="/form"
@@ -84,7 +84,7 @@ class FullForm extends Component {
               </Link>
             </div>
           </div>
-          <div className="col-sm-8 ">
+          <div className="col-sm-9 serenas__content">
             <Switch>
               <Route exact path={`${match.path}/`}>
                 <Fragment>
@@ -94,7 +94,7 @@ class FullForm extends Component {
                   />
 
                   <Link to="/form/personal_data">
-                    <button type="button" className="btn btn-dark">
+                    <button type="button" className="btn btn-outline-dark">
                       Continue
                     </button>
                   </Link>
@@ -111,7 +111,7 @@ class FullForm extends Component {
                     onChange={this.onChange}
                   />
                   <Link to="/form/contact">
-                    <button type="button" className="btn btn-dark">
+                    <button type="button" className="btn btn-outline-dark">
                       Continue
                     </button>
                   </Link>
@@ -124,7 +124,7 @@ class FullForm extends Component {
                     onChange={this.onChange}
                   />
                   <Link to="/form/expenses">
-                    <button type="button" className="btn btn-dark">
+                    <button type="button" className="btn btn-outline-dark">
                       Continue
                     </button>
 
@@ -139,7 +139,7 @@ class FullForm extends Component {
                     onChange={this.onChange}
                   />
                   <Link to="/form/expenses">
-                    <button type="button" className="btn btn-dark">
+                    <button type="button" className="btn btn-outline-dark">
                       Continue
                     </button>
 
@@ -154,7 +154,7 @@ class FullForm extends Component {
                     onChange={this.onChange}
                   />
                   <Link to="/form/employer">
-                    <button type="button" className="btn btn-dark">
+                    <button type="button" className="btn btn-outline-dark">
                       Continue
                     </button>
 
@@ -170,7 +170,7 @@ class FullForm extends Component {
                     onChange={this.onChange}
                   />
                   <Link to="/form/bank">
-                    <button type="button" className="btn btn-dark">
+                    <button type="button" className="btn btn-outline-dark">
                       Continue
                     </button>
 
@@ -187,7 +187,7 @@ class FullForm extends Component {
                   <button
                     onClick={this.submitForm}
                     type="button"
-                    className="btn btn-dark"
+                    className="btn btn-outline-dark"
                   >
                     Send
                   </button>

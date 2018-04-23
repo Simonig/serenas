@@ -72,7 +72,7 @@ class ContactData extends Component {
         />
 
 
-        <div className="form-check">
+        <div className="form-group form-check">
           <input
             className="form-check-input"
             onClick={(e) => this.onChange({
@@ -87,7 +87,7 @@ class ContactData extends Component {
           <label className="form-check-label">Terms and Conditions</label>
         </div>
 
-        <div className="form-check">
+        <div className="form-group form-check">
           <input
             className="form-check-input"
             onClick={(e) => this.onChange({
