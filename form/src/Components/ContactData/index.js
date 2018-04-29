@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import InputField from '../InputField';
 import DatePickerInput from '../DatePickerInput';
@@ -38,64 +38,66 @@ class ContactData extends Component {
     } = this.state;
 
     return (
-      <div>
+      <Fragment>
         <h1>Contact Data</h1>
-
-        <DatePickerInput
-          onChange={this.onChange}
-          name="livingSince"
-          label="Birth Date"
-          value={livingSince}
-        />
-        <InputField
-          name="streetName"
-          label="Street Name"
-          value={streetName}
-          onChange={this.onChange}
-        />
-        <InputField
-          name="streetNumber"
-          label="Street Number"
-          value={streetNumber}
-          onChange={this.onChange}
-        />
-        <InputField
-          name="zipCode"
-          label="Zip Code"
-          value={zipCode}
-          onChange={this.onChange}
-        />
-        <InputField
-          name="city"
-          label="City"
-          value={city}
-          onChange={this.onChange}
-        />
-        <InputField
-          name="telephone"
-          label="Telephone"
-          value={telephone}
-          onChange={this.onChange}
-        />
-        <InputField
-          name="mobileTelephone"
-          label="Mobile"
-          value={mobileTelephone}
-          onChange={this.onChange}
-        />
-        <InputField
-          name="email"
-          label="Email"
-          value={email}
-          onChange={this.onChange}
-        />
-      </div>
+        <div className="formContent">
+          <DatePickerInput
+            onChange={this.onChange}
+            name="livingSince"
+            label="Birth Date"
+            value={livingSince}
+          />
+          <InputField
+            name="streetName"
+            label="Street Name"
+            value={streetName}
+            onChange={this.onChange}
+          />
+          <InputField
+            name="streetNumber"
+            label="Street Number"
+            value={streetNumber}
+            onChange={this.onChange}
+          />
+          <InputField
+            name="zipCode"
+            label="Zip Code"
+            value={zipCode}
+            onChange={this.onChange}
+          />
+          <InputField
+            name="city"
+            label="City"
+            value={city}
+            onChange={this.onChange}
+          />
+          <InputField
+            name="telephone"
+            label="Telephone"
+            value={telephone}
+            onChange={this.onChange}
+          />
+          <InputField
+            name="mobileTelephone"
+            label="Mobile"
+            value={mobileTelephone}
+            onChange={this.onChange}
+          />
+          <InputField
+            name="email"
+            label="Email"
+            value={email}
+            onChange={this.onChange}
+          />
+        </div>
+      </Fragment>
     );
   }
 }
 
 ContactData.defaultProps = {
-  onChange: () => {},
+  onChange: () => {
+  },
   contactData: {
     living_since: undefined,
     street_name: '',

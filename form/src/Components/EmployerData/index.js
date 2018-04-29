@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import InputField from '../InputField';
 import DatePickerInput from '../DatePickerInput';
@@ -38,58 +38,60 @@ class EmployerData extends Component {
     } = this.state;
 
     return (
-      <div>
+      <Fragment>
         <h1>Employer Data</h1>
+        <div className="formContent">
+          <InputField
+            name="company"
+            label="Company"
+            value={company}
+            onChange={this.onChange}
+          />
+          <InputField
+            name="street"
+            label="street"
+            value={street}
+            onChange={this.onChange}
+          />
+          <InputField
+            name="phone"
+            label="phone"
+            value={phone}
+            onChange={this.onChange}
+          />
+          <InputField
+            name="zip"
+            label="zip"
+            value={zip}
+            onChange={this.onChange}
+          />
+          <InputField
+            name="city"
+            label="city"
+            value={city}
+            onChange={this.onChange}
+          />
+          <DatePickerInput
+            name="since"
+            label="since"
+            value={since}
+          />
+          <InputField
+            name="employmentStatus"
+            label="employment_status"
+            value={employmentStatus}
+            onChange={this.onChange}
+          />
 
-        <InputField
-          name="company"
-          label="Company"
-          value={company}
-          onChange={this.onChange}
-        />
-        <InputField
-          name="street"
-          label="street"
-          value={street}
-          onChange={this.onChange}
-        />
-        <InputField
-          name="phone"
-          label="phone"
-          value={phone}
-          onChange={this.onChange}
-        />
-        <InputField
-          name="zip"
-          label="zip"
-          value={zip}
-          onChange={this.onChange}
-        />
-        <InputField
-          name="city"
-          label="city"
-          value={city}
-          onChange={this.onChange}
-        />
-        <DatePickerInput
-          name="since"
-          label="since"
-          value={since}
-        />
-        <InputField
-          name="employmentStatus"
-          label="employment_status"
-          value={employmentStatus}
-          onChange={this.onChange}
-        />
-
-      </div>
+        </div>
+      </Fragment>
     );
   }
 }
 
 EmployerData.defaultProps = {
-  onChange: () => {},
+  onChange: () => {
+  },
   employerData: {
     company: '',
     street: '',

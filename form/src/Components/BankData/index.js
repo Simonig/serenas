@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import InputField from '../InputField';
 
@@ -27,28 +27,31 @@ class BankData extends Component {
     } = this.state;
 
     return (
-      <div>
+      <Fragment>
         <h1>Bank Data</h1>
+        <div className="formContent">
+          <InputField
+            name="iban"
+            label="iban"
+            value={iban}
+            onChange={this.onChange}
+          />
 
-        <InputField
-          name="iban"
-          label="iban"
-          value={iban}
-          onChange={this.onChange}
-        />
-        <InputField
-          name="bic"
-          label="bic"
-          value={bic}
-          onChange={this.onChange}
-        />
-      </div>
+          <InputField
+            name="bic"
+            label="bic"
+            value={bic}
+            onChange={this.onChange}
+          />
+        </div>
+      </Fragment>
     );
   }
 }
 
 BankData.defaultProps = {
-  onChange: () => {},
+  onChange: () => {
+  },
   bankData: {
     iban: '',
     bic: '',

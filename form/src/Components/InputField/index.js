@@ -10,6 +10,9 @@ class InputField extends Component {
 
     return (
       <div className="form-group">
+        <label>
+          {label}
+        </label>
 
         <input
           type={type}

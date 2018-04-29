@@ -3,6 +3,7 @@ body,
 #root,
 .App {
   height: 100%;
+  background-color: #f5f5f5;
 }
 
 .App {
@@ -18,10 +19,23 @@ body,
 
 }
 
+.form-group {
+  input {
+    font-family: "Neutrif SemiBold", Arial, sans-serif;
+  }
+  label {
+    color: #3b534f;
+    display: block;
+    letter-spacing: .5px;
+    margin-bottom: 5px;
+    font-family: "Neutrif SemiBold", Arial, sans-serif;
+  }
+}
 
 ul.nav {
   background: white;
   border-bottom: solid 3px;
+  position: sticky;
 
   .nav-item {
     width: 200px;
@@ -31,6 +45,7 @@ ul.nav {
 a {
   color: #403a3a;
 }
+
 .nav-pills {
   .nav-link.active, .nav-pills .show > .nav-link {
     background: #403a3a;
@@ -49,16 +64,46 @@ a {
 
 .serenas__content {
   padding-top: 30px;
-  background-color: #fff;
   padding-left: 5%;
   padding-right: 5%;
+  margin-bottom: 10%;
 }
 
 .serenas__sidebar {
   padding-top: 30px;
 }
 
+.row-button {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background-color: white;
+  padding: 20px;
+  border: 1px solid #e9f1f0;
+  right: 0;
+  .btn {
+    float: right;
+    margin: 0 15%;
+  }
+}
+
 .btn,
 .form-control {
   border-radius: 0.15rem;
+}
+
+.formContent {
+  background-color: white;
+  border-radius: 5px;
+  border: 1px solid #e9f1f0;
+  padding: 20px;
+  margin-bottom: 15%;
+}
+
+.react-datepicker-wrapper{
+  width:100%;
+  div {
+    width: 100%;
+  }
 }

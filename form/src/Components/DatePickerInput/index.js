@@ -26,6 +26,7 @@ class DatePickerInput extends Component {
           dropdownMode="select"
           selected={value}
           onChange={this.handleChange}
+          className="form-control"
         />
 
       </div>

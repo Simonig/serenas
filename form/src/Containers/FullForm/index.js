@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { Route, Link, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { INITIAL_STATE } from '../../constants';
@@ -11,6 +11,8 @@ import ExpensesData from '../../Components/ExpensesData';
 import EmployerData from '../../Components/EmployerData';
 import BankData from '../../Components/BankData';
 import LoanData from '../../Components/LoanData';
+import RowButton from '../../Components/RowButton';
+import NavigationBar from '../../Components/NavigationBar';
 import { formActions } from '../../Redux/FormReducer';
 
 class FullForm extends Component {
@@ -54,37 +56,10 @@ class FullForm extends Component {
     return (
       <Fragment>
         <div className="row serenas__container--row">
-          <div className="col-sm-3 serenas__sidebar">
-            <div className="nav flex-column nav-pills" role="tablist">
-              <Link
-                to="/form"
-                className={`${location.pathname === '/form' ? 'active' : ''} nav-link`}
-              >
-                1.Loan
-              </Link>
-              <Link
-                to="/form/personal_data"
-                className={`${location.pathname === '/form/personal_data' ? 'active' : ''} nav-link`}
-              >
-                2.Personal Data
-              </Link>
-
-              <Link
-                to="/form/contact"
-                className={`${location.pathname === '/form/contact' ? 'active' : ''} nav-link`}
-              >
-                3.Contact Data
-              </Link>
-
-              <Link
-                to="/form/income"
-                className={`${location.pathname === '/form/income' ? 'active' : ''} nav-link`}
-              >
-                4.Income Data
-              </Link>
-            </div>
+          <div className="col-sm-2 offset-sm-1 serenas__sidebar">
+            <NavigationBar location={location} />
           </div>
-          <div className="col-sm-9 serenas__content">
+          <div className="col-sm-8 serenas__content">
             <Switch>
               <Route exact path={`${match.path}/`}>
                 <Fragment>
@@ -93,11 +68,8 @@ class FullForm extends Component {
                     onChange={this.onChange}
                   />
 
-                  <Link to="/form/personal_data">
-                    <button type="button" className="btn btn-outline-dark">
-                      Continue
-                    </button>
-                  </Link>
+                  <RowButton to="/form/personal_data" text="Continue" />
+
                 </Fragment>
               </Route>
 
@@ -110,25 +82,19 @@ class FullForm extends Component {
                     personalData={personalData}
                     onChange={this.onChange}
                   />
-                  <Link to="/form/contact">
-                    <button type="button" className="btn btn-outline-dark">
-                      Continue
-                    </button>
-                  </Link>
+                  <RowButton to="/form/contact" text="Continue" />
+
                 </Fragment>
               </Route>
+
+
               <Route path={`${match.path}/contact`}>
                 <Fragment>
                   <ContactData
                     contactData={contactData}
                     onChange={this.onChange}
                   />
-                  <Link to="/form/expenses">
-                    <button type="button" className="btn btn-outline-dark">
-                      Continue
-                    </button>
-
-                  </Link>
+                  <RowButton to="/form/income" text="Continue" />
                 </Fragment>
               </Route>
 
@@ -138,12 +104,8 @@ class FullForm extends Component {
                     incomeData={income}
                     onChange={this.onChange}
                   />
-                  <Link to="/form/expenses">
-                    <button type="button" className="btn btn-outline-dark">
-                      Continue
-                    </button>
+                  <RowButton to="/form/expenses" text="Continue" />
 
-                  </Link>
                 </Fragment>
               </Route>
 
@@ -153,12 +115,8 @@ class FullForm extends Component {
                     expensesData={expenses}
                     onChange={this.onChange}
                   />
-                  <Link to="/form/employer">
-                    <button type="button" className="btn btn-outline-dark">
-                      Continue
-                    </button>
+                  <RowButton to="/form/employer" text="Continue" />
 
-                  </Link>
                 </Fragment>
               </Route>
 
@@ -169,12 +127,8 @@ class FullForm extends Component {
                     employerData={employerData}
                     onChange={this.onChange}
                   />
-                  <Link to="/form/bank">
-                    <button type="button" className="btn btn-outline-dark">
-                      Continue
-                    </button>
+                  <RowButton to="/form/bank" text="Continue" />
 
-                  </Link>
                 </Fragment>
               </Route>
 
@@ -184,13 +138,8 @@ class FullForm extends Component {
                     bankData={bankData}
                     onChange={this.onChange}
                   />
-                  <button
-                    onClick={this.submitForm}
-                    type="button"
-                    className="btn btn-outline-dark"
-                  >
-                    Send
-                  </button>
+                  <RowButton onClick={this.submitForm} text="Send" />
+
                 </Fragment>
               </Route>
             </Switch>
@@ -211,3 +160,4 @@ function mapDispatchToProps(dispatch) {
 const withConnect = connect(null, mapDispatchToProps);
 
 export default withConnect(FullForm);
+

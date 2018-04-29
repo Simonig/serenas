@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import InputField from '../InputField';
 
@@ -32,47 +32,52 @@ class IncomeData extends Component {
     } = this.state;
 
     return (
-      <div>
+      <Fragment>
+
         <h1>Income Data</h1>
-        <InputField
-          type="number"
-          name="total"
-          label="Total"
-          value={total}
-          onChange={this.onChange}
-        />
+        <div className="formContent">
 
-        <InputField
-          type="number"
-          name="netIncome"
-          label="Net Income"
-          value={netIncome}
-          onChange={this.onChange}
-        />
+          <InputField
+            type="number"
+            name="total"
+            label="Total"
+            value={total}
+            onChange={this.onChange}
+          />
 
-        <InputField
-          type="number"
-          name="childBenefits"
-          label="Child Benefits"
-          value={childBenefits}
-          onChange={this.onChange}
-        />
+          <InputField
+            type="number"
+            name="netIncome"
+            label="Net Income"
+            value={netIncome}
+            onChange={this.onChange}
+          />
 
-        <InputField
-          type="number"
-          name="other"
-          label="other"
-          value={other}
-          onChange={this.onChange}
-        />
+          <InputField
+            type="number"
+            name="childBenefits"
+            label="Child Benefits"
+            value={childBenefits}
+            onChange={this.onChange}
+          />
 
-      </div>
+          <InputField
+            type="number"
+            name="other"
+            label="other"
+            value={other}
+            onChange={this.onChange}
+          />
+
+        </div>
+      </Fragment>
     );
   }
 }
 
 IncomeData.defaultProps = {
-  onChange: () => {},
+  onChange: () => {
+  },
   incomeData: {
     total: '',
     netIncome: '',

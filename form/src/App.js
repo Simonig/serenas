@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 
 import './App.scss';
 import images from './Images';
@@ -25,11 +25,15 @@ class App extends Component {
               </li>
             </ul>
             <div className="container-fluid serenas__container">
-              <Route path="/">
-                <Redirect to="/form" />
-              </Route>
-              <Route path="/form" component={FullForm} />
-              <Route path="/success" component={SuccessPage} />
+              <Switch>
+
+                <Route path="/form" component={FullForm} />
+                <Route path="/success" component={SuccessPage} />
+                <Route path="/">
+                  <Redirect to="/form" />
+                </Route>
+              </Switch>
+
             </div>
           </div>
 

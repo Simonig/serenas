@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import InputField from '../InputField';
 
@@ -37,72 +37,73 @@ class ExpensesData extends Component {
     } = this.state;
 
     return (
-      <div>
+      <Fragment>
         <h1>Expenses Data</h1>
+        <div className="formContent">
+          <InputField
+            name="totalExpenses"
+            label="total_expenses"
+            value={totalExpenses}
+            onChange={this.onChange}
+            type="number"
+          />
+          <InputField
+            name="rentAndMortgage"
+            label="rent_and_mortgage"
+            value={rentAndMortgage}
+            onChange={this.onChange}
+            type="number"
+          />
 
+          <InputField
+            name="supportExpenses"
+            label="support_expenses"
+            value={supportExpenses}
+            onChange={this.onChange}
+            type="number"
+          />
 
-        <InputField
-          name="totalExpenses"
-          label="total_expenses"
-          value={totalExpenses}
-          onChange={this.onChange}
-          type="number"
-        />
-        <InputField
-          name="rentAndMortgage"
-          label="rent_and_mortgage"
-          value={rentAndMortgage}
-          onChange={this.onChange}
-          type="number"
-        />
+          <InputField
+            name="insuranceAndSavings"
+            label="insurance_and_savings"
+            value={insuranceAndSavings}
+            onChange={this.onChange}
+            type="number"
+          />
 
-        <InputField
-          name="supportExpenses"
-          label="support_expenses"
-          value={supportExpenses}
-          onChange={this.onChange}
-          type="number"
-        />
+          <InputField
+            name="memberships"
+            label="memberships"
+            value={memberships}
+            onChange={this.onChange}
+            type="number"
+          />
 
-        <InputField
-          name="insuranceAndSavings"
-          label="insurance_and_savings"
-          value={insuranceAndSavings}
-          onChange={this.onChange}
-          type="number"
-        />
+          <InputField
+            name="debtExpenses"
+            label="debt_expenses"
+            value={debtExpenses}
+            onChange={this.onChange}
+            type="number"
+          />
 
-        <InputField
-          name="memberships"
-          label="memberships"
-          value={memberships}
-          onChange={this.onChange}
-          type="number"
-        />
+          <InputField
+            name="other"
+            label="other"
+            value={other}
+            onChange={this.onChange}
+            type="number"
+          />
 
-        <InputField
-          name="debtExpenses"
-          label="debt_expenses"
-          value={debtExpenses}
-          onChange={this.onChange}
-          type="number"
-        />
-
-        <InputField
-          name="other"
-          label="other"
-          value={other}
-          onChange={this.onChange}
-          type="number"
-        />
-
-      </div>
+        </div>
+      </Fragment>
     );
   }
 }
 
 ExpensesData.defaultProps = {
-  onChange: () => {},
+  onChange: () => {
+  },
   expensesData: {
     totalExpenses: '',
     rentAndMortgage: '',

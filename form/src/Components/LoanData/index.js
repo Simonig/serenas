@@ -43,64 +43,67 @@ class ContactData extends Component {
     return (
       <Fragment>
         <h1>Loan Data</h1>
-        <AmountField
-          onChange={this.onChange}
-          name="loanAsked"
-          value={loanAsked}
-          label="Loan"
-        />
-        <Select
-          name="duration"
-          label="Duration"
-          onChange={this.onChange}
-          options={DURATION_OPTIONS}
-          value={duration}
-        />
-        <Select
-          name="collectionDay"
-          label="Collection Day"
-          onChange={this.onChange}
-          options={COLLECTION_DAY_OPTIONS}
-          value={collectionDay}
-        />
-        <Select
-          name="rsv"
-          label="Rsv"
-          onChange={this.onChange}
-          options={YES_NO_OPTIONS}
-          value={rsv}
-        />
+        <div className="formContent">
 
-
-        <div className="form-group form-check">
-          <input
-            className="form-check-input"
-            onClick={(e) => this.onChange({
-              name: e.target.name,
-              value: !isAcceptedTermsOfService,
-            })}
-            name="isAcceptedTermsOfService"
-            defaultChecked={isAcceptedTermsOfService}
-            value={isAcceptedTermsOfService}
-            type="checkbox"
+          <AmountField
+            onChange={this.onChange}
+            name="loanAsked"
+            value={loanAsked}
+            label="Loan"
           />
-          <label className="form-check-label">Terms and Conditions</label>
-        </div>
-
-        <div className="form-group form-check">
-          <input
-            className="form-check-input"
-            onClick={(e) => this.onChange({
-              name: e.target.name,
-              value: !isAcceptedSolvencyRetrieval,
-            })}
-            name="isAcceptedSolvencyRetrieval"
-            defaultChecked={isAcceptedSolvencyRetrieval}
-            value={isAcceptedSolvencyRetrieval}
-            type="checkbox"
+          <Select
+            name="duration"
+            label="Duration"
+            onChange={this.onChange}
+            options={DURATION_OPTIONS}
+            value={duration}
           />
-          <label className="form-check-label">Accept solvency retrieval</label>
+          <Select
+            name="collectionDay"
+            label="Collection Day"
+            onChange={this.onChange}
+            options={COLLECTION_DAY_OPTIONS}
+            value={collectionDay}
+          />
+          <Select
+            name="rsv"
+            label="Rsv"
+            onChange={this.onChange}
+            options={YES_NO_OPTIONS}
+            value={rsv}
+          />
 
+
+          <div className="form-group form-check">
+            <input
+              className="form-check-input"
+              onClick={(e) => this.onChange({
+                name: e.target.name,
+                value: !isAcceptedTermsOfService,
+              })}
+              name="isAcceptedTermsOfService"
+              defaultChecked={isAcceptedTermsOfService}
+              value={isAcceptedTermsOfService}
+              type="checkbox"
+            />
+            <label className="form-check-label">Terms and Conditions</label>
+          </div>
+
+          <div className="form-group form-check">
+            <input
+              className="form-check-input"
+              onClick={(e) => this.onChange({
+                name: e.target.name,
+                value: !isAcceptedSolvencyRetrieval,
+              })}
+              name="isAcceptedSolvencyRetrieval"
+              defaultChecked={isAcceptedSolvencyRetrieval}
+              value={isAcceptedSolvencyRetrieval}
+              type="checkbox"
+            />
+            <label className="form-check-label">Accept solvency retrieval</label>
+
+          </div>
         </div>
       </Fragment>
     );
