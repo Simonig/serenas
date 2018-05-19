@@ -88,6 +88,7 @@ export const INITIAL_STATE = {
     housingType: '1',
     mainEarner: '1',
     carOwner: '1',
+    taxIdentificationNumber: 19999922991,
   },
   contactData: {
     livingSince: moment(), // not required

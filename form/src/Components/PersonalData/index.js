@@ -18,7 +18,7 @@ class PersonalData extends Component {
     const {
       address, forename, surname, familyStatus, birthDate,
       occupation, hasCreditCard, hasEcCard, hasRealEstate, housingType, mainEarner,
-      carOwner,
+      carOwner, taxIdentificationNumber,
     } = props.personalData;
 
     this.state = {
@@ -34,6 +34,7 @@ class PersonalData extends Component {
       housingType: housingType || '',
       mainEarner: mainEarner || '',
       carOwner: carOwner || '',
+      taxIdentificationNumber: taxIdentificationNumber || 0,
     };
   }
 
@@ -47,7 +48,7 @@ class PersonalData extends Component {
   render() {
     const {
       address, forename, surname, familyStatus, birthDate,
-      occupation, hasCreditCard, hasEcCard, hasRealEstate, housingType, mainEarner,
+      occupation, hasCreditCard, hasEcCard, hasRealEstate, housingType, mainEarner, taxIdentificationNumber,
       carOwner,
     } = this.state;
 
@@ -71,6 +72,13 @@ class PersonalData extends Component {
             name="address"
             label="Address"
             value={address}
+            onChange={this.onChange}
+          />
+          <InputField
+            name="taxIdentificationNumber"
+            label="taxIdentificationNumber"
+            value={taxIdentificationNumber}
+            type="number"
             onChange={this.onChange}
           />
           <Select
