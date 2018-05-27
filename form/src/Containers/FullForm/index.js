@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+
 import { INITIAL_STATE } from '../../constants';
 
 import PersonalData from '../../Components/PersonalData';
@@ -42,8 +43,9 @@ class FullForm extends Component {
     this.setState(newState);
   };
 
-  submitForm = () => {
-    this.props.tryToSend(this.state);
+  submitForm = (values) => {
+    console.log(values);
+    this.props.tryToSend(values);
   };
 
   render() {
@@ -60,89 +62,91 @@ class FullForm extends Component {
             <NavigationBar location={location} />
           </div>
           <div className="col-sm-8 serenas__content">
-            <Switch>
-              <Route exact path={`${match.path}/`}>
-                <Fragment>
-                  <LoanData
-                    personalData={loanData}
-                    onChange={this.onChange}
-                  />
+            <form onSubmit={this.submitForm}>
+              <Switch>
+                <Route exact path={`${match.path}/`}>
+                  <Fragment>
+                    <LoanData
+                      personalData={loanData}
+                      onChange={this.onChange}
+                    />
 
-                  <RowButton to="/form/personal_data" text="Continue" />
+                    <RowButton to="/form/personal_data" text="Continue" />
 
-                </Fragment>
-              </Route>
-
-
-              <Route path={`${match.path}/personal_data`}>
-                <Fragment>
-                  <h1>Personal Data</h1>
-
-                  <PersonalData
-                    personalData={personalData}
-                    onChange={this.onChange}
-                  />
-                  <RowButton to="/form/contact" text="Continue" />
-
-                </Fragment>
-              </Route>
+                  </Fragment>
+                </Route>
 
 
-              <Route path={`${match.path}/contact`}>
-                <Fragment>
-                  <ContactData
-                    contactData={contactData}
-                    onChange={this.onChange}
-                  />
-                  <RowButton to="/form/income" text="Continue" />
-                </Fragment>
-              </Route>
+                <Route path={`${match.path}/personal_data`}>
+                  <Fragment>
+                    <h1>Personal Data</h1>
 
-              <Route path={`${match.path}/income`}>
-                <Fragment>
-                  <IncomeData
-                    incomeData={income}
-                    onChange={this.onChange}
-                  />
-                  <RowButton to="/form/expenses" text="Continue" />
+                    <PersonalData
+                      personalData={personalData}
+                      onChange={this.onChange}
+                    />
+                    <RowButton to="/form/contact" text="Continue" />
 
-                </Fragment>
-              </Route>
-
-              <Route path={`${match.path}/expenses`}>
-                <Fragment>
-                  <ExpensesData
-                    expensesData={expenses}
-                    onChange={this.onChange}
-                  />
-                  <RowButton to="/form/employer" text="Continue" />
-
-                </Fragment>
-              </Route>
+                  </Fragment>
+                </Route>
 
 
-              <Route path={`${match.path}/employer`}>
-                <Fragment>
-                  <EmployerData
-                    employerData={employerData}
-                    onChange={this.onChange}
-                  />
-                  <RowButton to="/form/bank" text="Continue" />
+                <Route path={`${match.path}/contact`}>
+                  <Fragment>
+                    <ContactData
+                      contactData={contactData}
+                      onChange={this.onChange}
+                    />
+                    <RowButton to="/form/income" text="Continue" />
+                  </Fragment>
+                </Route>
 
-                </Fragment>
-              </Route>
+                <Route path={`${match.path}/income`}>
+                  <Fragment>
+                    <IncomeData
+                      incomeData={income}
+                      onChange={this.onChange}
+                    />
+                    <RowButton to="/form/expenses" text="Continue" />
 
-              <Route path={`${match.path}/bank`}>
-                <Fragment>
-                  <BankData
-                    bankData={bankData}
-                    onChange={this.onChange}
-                  />
-                  <RowButton onClick={this.submitForm} text="Send" />
+                  </Fragment>
+                </Route>
 
-                </Fragment>
-              </Route>
-            </Switch>
+                <Route path={`${match.path}/expenses`}>
+                  <Fragment>
+                    <ExpensesData
+                      expensesData={expenses}
+                      onChange={this.onChange}
+                    />
+                    <RowButton to="/form/employer" text="Continue" />
+
+                  </Fragment>
+                </Route>
+
+
+                <Route path={`${match.path}/employer`}>
+                  <Fragment>
+                    <EmployerData
+                      employerData={employerData}
+                      onChange={this.onChange}
+                    />
+                    <RowButton to="/form/bank" text="Continue" />
+
+                  </Fragment>
+                </Route>
+
+                <Route path={`${match.path}/bank`}>
+                  <Fragment>
+                    <BankData
+                      bankData={bankData}
+                      onChange={this.onChange}
+                    />
+                    <RowButton type="submit" text="Send" />
+
+                  </Fragment>
+                </Route>
+              </Switch>
+            </form>
           </div>
         </div>
       </Fragment>

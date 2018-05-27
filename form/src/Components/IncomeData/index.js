@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import InputField from '../InputField';
+import Validation from './validation';
 
 class IncomeData extends Component {
   constructor(props) {
@@ -15,6 +16,7 @@ class IncomeData extends Component {
       netIncome: netIncome || '',
       childBenefits: childBenefits || '',
       other: other || '',
+      errors: {},
     };
   }
 
@@ -25,10 +27,21 @@ class IncomeData extends Component {
     });
   };
 
+  onBlur = (e) => {
+    const { name, value } = e.target;
+    const { errors } = this.state;
+
+    console.log(name, value);
+
+    errors[name] = Validation(name, value);
+
+    console.log(errors);
+    this.setState({ errors });
+  };
 
   render() {
     const {
-      total, netIncome, childBenefits, other,
+      total, netIncome, childBenefits, other, errors,
     } = this.state;
 
     return (
@@ -42,32 +55,40 @@ class IncomeData extends Component {
             name="total"
             label="Total"
             value={total}
+            onBlur={this.onBlur}
             onChange={this.onChange}
           />
+          <p className="error">{errors.total}</p>
 
           <InputField
             type="number"
             name="netIncome"
             label="Net Income"
             value={netIncome}
+            onBlur={this.onBlur}
             onChange={this.onChange}
           />
+          <p className="error">{errors.netIncome}</p>
 
           <InputField
             type="number"
             name="childBenefits"
             label="Child Benefits"
             value={childBenefits}
+            onBlur={this.onBlur}
             onChange={this.onChange}
           />
+          <p className="error">{errors.childBenefits}</p>
 
           <InputField
             type="number"
             name="other"
             label="other"
             value={other}
+            onBlur={this.onBlur}
             onChange={this.onChange}
           />
+          <p className="error">{errors.other}</p>
 
         </div>
       </Fragment>

@@ -11,6 +11,12 @@ class AmountField extends Component {
     if (payload.value < 1000) payload.value = 1000;
 
     this.props.onChange(payload);
+    this.props.onBlur({
+      target: {
+        value: `${payload.value}`,
+        name,
+      },
+    });
   };
 
   render() {
@@ -21,7 +27,7 @@ class AmountField extends Component {
     return (
       <div className="form-group">
 
-        <label>Amount</label>
+        <label>Amount {value}</label>
 
         <input
           type="number"
@@ -41,12 +47,14 @@ class AmountField extends Component {
 
 AmountField.defaultProps = {
   onChange: () => {},
+  onBlur: () => {},
   value: 1000,
   label: '',
 };
 
 AmountField.propTypes = {
   onChange: PropTypes.func,
+  onBlur: PropTypes.func,
   value: PropTypes.number,
   name: PropTypes.string.isRequired,
   label: PropTypes.string,

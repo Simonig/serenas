@@ -4,6 +4,7 @@ body,
 .App {
   height: 100%;
   background-color: #f5f5f5;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .App {
@@ -82,9 +83,23 @@ a {
   padding: 20px;
   border: 1px solid #e9f1f0;
   right: 0;
+
+  .button-position {
+    display: flex;
+    justify-content: center;
+  }
+
+  @media (min-width:961px)  {
+    .button-position {
+      padding-right: 5%;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+  }
+
   .btn {
-    float: right;
-    margin: 0 15%;
+    margin: 0;
   }
 }
 
@@ -98,7 +113,7 @@ a {
   border-radius: 5px;
   border: 1px solid #e9f1f0;
   padding: 20px;
-  margin-bottom: 15%;
+  margin-bottom: 18%;
 }
 
 .react-datepicker-wrapper{
@@ -106,4 +121,10 @@ a {
   div {
     width: 100%;
   }
+}
+
+.error {
+  color: #dc3545!important;
+  font-size: 12px;
+  margin-top: -10px;
 }

@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import InputField from '../InputField';
+import Validation from './validation';
 
 class BankData extends Component {
   constructor(props) {
@@ -11,19 +12,31 @@ class BankData extends Component {
     this.state = {
       bic: bic || '',
       iban: iban || '',
+      errors: {},
     };
   }
 
   onChange = (e) => {
     const { name, value } = e;
+
     this.setState({ [name]: value }, () => {
       this.props.onChange(this.state, 'expensesData');
     });
   };
 
+  onBlur = (e) => {
+    const { name, value } = e.target;
+    const { errors } = this.state;
+
+    errors[name] = Validation(name, value);
+
+    console.log(errors);
+    this.setState({ errors });
+  };
+
   render() {
     const {
-      bic, iban,
+      bic, iban, errors,
     } = this.state;
 
     return (
@@ -35,7 +48,9 @@ class BankData extends Component {
             label="iban"
             value={iban}
             onChange={this.onChange}
+            onBlur={this.onBlur}
           />
+          <p className="error">{errors.iban}</p>
 
           <InputField
             name="bic"
@@ -43,6 +58,7 @@ class BankData extends Component {
             value={bic}
             onChange={this.onChange}
           />
+          <p className="error">{errors.bic}</p>
         </div>
       </Fragment>
     );

@@ -10,7 +10,7 @@ class Select extends Component {
 
   render() {
     const {
-      options, value, label, onChange, name,
+      options, value, label, onChange, name, onBlur,
     } = this.props;
 
     return (
@@ -22,6 +22,7 @@ class Select extends Component {
           value={value}
           name={name}
           onChange={(e) => onChange(e.target)}
+          onBlur={onBlur}
         >
           {this.renderOpts(options)}
         </select>
@@ -34,6 +35,7 @@ Select.defaultProps = {
   value: '',
   label: '',
   onChange: () => {},
+  onBlur: () => {},
   name: '',
 };
 
@@ -42,6 +44,7 @@ Select.propTypes = {
   value: PropTypes.string,
   label: PropTypes.string,
   onChange: PropTypes.func,
+  onBlur: PropTypes.func,
   name: PropTypes.string,
 };
 
