@@ -26,29 +26,46 @@ app.use(express.static(path.resolve(__dirname, '..', 'form', 'build')));
 
 app.all('/', (req, res) => {
   if (req.method === 'POST') {
+    const total = req.body.x_cart_total_price;
+    const currency = req.body.x_currency;
+
     const url = req.body.x_url_callback;
 
+    /*
     const obj = {
       x_gateway_reference: req.body.x_reference,
       x_result: 'In-Progress',
     };
+    */
+
+    const obj = {
+      x_gateway_reference: req.body.x_reference,
+      x_result: 'Completed',
+      x_amount: total,
+      x_currency: currency,
+    };
+
     const secret = settings.get('versaSecret');
-    Logger.info('Object to Sign =>', obj);
-    Logger.info('Secret =>', secret);
+    console.log('\n\n\n');
+    console.log(`Object to Sign => ${obj}`);
+    console.log('Secret =>', secret);
+    console.log('\n\n');
     const signature = GenerateSignature(obj, secret);
 
-    Logger.info('Generated Signature =>', signature);
+    console.log('Generated Signature =>', signature);
+    console.log('\n\n');
     obj.x_signature = signature;
 
-    Logger.info('Final Object =>', obj);
+    console.log('Final Object =>', obj);
+    console.log('\n\n\n');
 
     let queryParams = Object.entries(obj).sort().reduce((str, [k, v]) => `${str}&${k}=${v}`, '');
     queryParams = queryParams.slice(1, queryParams.length);
 
 
-    Logger.info('Callback URL =>', url);
-    Logger.info('Query Params =>', queryParams);
-    Logger.info('Final URL =>', `${url}?${queryParams}`);
+    console.log('Callback URL =>', url);
+    console.log('Query Params =>', queryParams);
+    console.log('Final URL =>', `${url}?${queryParams}`);
   }
 
   res.sendFile(path.join(__dirname, '..', 'form', 'build', 'index.html'));
