@@ -16,6 +16,7 @@ mongoose.Promise = global.Promise;
 // Express routes and middleware
 const app = express();
 
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.post('/submitForm', postForm);
