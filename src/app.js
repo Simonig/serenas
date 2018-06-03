@@ -47,7 +47,7 @@ app.all('/', (req, res) => {
 
     const secret = settings.get('versaSecret');
     console.log('\n\n\n');
-    console.log(`Object to Sign => ${obj}`);
+    console.log('Object to Sign =>', obj);
     console.log('Secret =>', secret);
     console.log('\n\n');
     const signature = GenerateSignature(obj, secret);
