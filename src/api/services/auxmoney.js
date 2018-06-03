@@ -14,7 +14,7 @@ export class AuxmoneyApi {
         },
       });
     } catch (e) {
-      return e.response.data;
+      throw e.response.data;
     }
   }
 }
