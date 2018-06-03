@@ -7,7 +7,7 @@ const settings = {
     dbUrl: 'mongodb://127.0.0.1:27017',
     versaApiKey: '71c0867439e47033a52982f6c22385f960229c05',
     versaUrl: 'http://empty-wildflower-56.versacommerce.de/api/',
-
+    versaSecret: 'bokizebi',
   },
 
   production: {
