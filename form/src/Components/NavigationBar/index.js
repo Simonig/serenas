@@ -17,36 +17,19 @@ const NavigationBar = ({ location }) => (
       2.Personal Data
     </Link>
 
-    <Link
-      to="/form/contact"
-      className={`${location.pathname === '/form/contact' ? 'active' : ''} nav-link`}
-    >
-      3.Contact Data
-    </Link>
 
     <Link
       to="/form/income"
       className={`${location.pathname === '/form/income' ? 'active' : ''} nav-link`}
     >
-      4.Income Data
+      3.Income Data
     </Link>
-    <Link
-      to="/form/expenses"
-      className={`${location.pathname === '/form/expenses' ? 'active' : ''} nav-link`}
-    >
-      5.Expenses Data
-    </Link>
+
     <Link
       to="/form/employer"
       className={`${location.pathname === '/form/employer' ? 'active' : ''} nav-link`}
     >
-      6.Employer Data
-    </Link>
-    <Link
-      to="/form/bank"
-      className={`${location.pathname === '/form/bank' ? 'active' : ''} nav-link`}
-    >
-      6.Bank Data
+      4.Employer Data
     </Link>
   </div>
 

@@ -51,6 +51,7 @@ class ExpensesData extends Component {
 
     return (
       <Fragment>
+        <br />
         <h1>Expenses Data</h1>
         <div className="formContent">
           <InputField

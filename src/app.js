@@ -9,8 +9,8 @@ import Logger from './api/helpers/Logger';
 import { postForm } from './api/controllers/form';
 
 // Mongodb Connection
-mongoose.connect(settings.get('dbUrl'));
-mongoose.Promise = global.Promise;
+//mongoose.connect(settings.get('dbUrl'));
+//mongoose.Promise = global.Promise;
 
 
 // Express routes and middleware

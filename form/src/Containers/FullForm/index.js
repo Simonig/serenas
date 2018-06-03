@@ -6,11 +6,9 @@ import PropTypes from 'prop-types';
 import { INITIAL_STATE } from '../../constants';
 
 import PersonalData from '../../Components/PersonalData';
-import ContactData from '../../Components/ContactData';
 import IncomeData from '../../Components/IncomeData';
 import ExpensesData from '../../Components/ExpensesData';
 import EmployerData from '../../Components/EmployerData';
-import BankData from '../../Components/BankData';
 import LoanData from '../../Components/LoanData';
 import RowButton from '../../Components/RowButton';
 import NavigationBar from '../../Components/NavigationBar';
@@ -39,7 +37,6 @@ class FullForm extends Component {
     } else {
       newState[newValue.name] = newValue.value;
     }
-
     this.setState(newState);
   };
 
@@ -65,6 +62,7 @@ class FullForm extends Component {
             <form onSubmit={this.submitForm}>
               <Switch>
                 <Route exact path={`${match.path}/`}>
+
                   <Fragment>
                     <LoanData
                       personalData={loanData}
@@ -84,22 +82,14 @@ class FullForm extends Component {
                     <PersonalData
                       personalData={personalData}
                       onChange={this.onChange}
-                    />
-                    <RowButton to="/form/contact" text="Continue" />
-
-                  </Fragment>
-                </Route>
-
-
-                <Route path={`${match.path}/contact`}>
-                  <Fragment>
-                    <ContactData
                       contactData={contactData}
-                      onChange={this.onChange}
                     />
+
                     <RowButton to="/form/income" text="Continue" />
+
                   </Fragment>
                 </Route>
+
 
                 <Route path={`${match.path}/income`}>
                   <Fragment>
@@ -107,18 +97,12 @@ class FullForm extends Component {
                       incomeData={income}
                       onChange={this.onChange}
                     />
-                    <RowButton to="/form/expenses" text="Continue" />
 
-                  </Fragment>
-                </Route>
-
-                <Route path={`${match.path}/expenses`}>
-                  <Fragment>
                     <ExpensesData
                       expensesData={expenses}
                       onChange={this.onChange}
                     />
-                    <RowButton to="/form/employer" text="Continue" />
+                    <RowButton to="/form/expenses" text="Continue" />
 
                   </Fragment>
                 </Route>
@@ -128,23 +112,17 @@ class FullForm extends Component {
                   <Fragment>
                     <EmployerData
                       employerData={employerData}
-                      onChange={this.onChange}
-                    />
-                    <RowButton to="/form/bank" text="Continue" />
-
-                  </Fragment>
-                </Route>
-
-                <Route path={`${match.path}/bank`}>
-                  <Fragment>
-                    <BankData
+                      personalData={personalData}
                       bankData={bankData}
+                      loanData={loanData}
                       onChange={this.onChange}
                     />
+
                     <RowButton type="submit" text="Send" />
 
                   </Fragment>
                 </Route>
+
               </Switch>
             </form>
           </div>

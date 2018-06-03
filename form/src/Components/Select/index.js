@@ -34,14 +34,12 @@ class Select extends Component {
 Select.defaultProps = {
   value: '',
   label: '',
-  onChange: () => {},
-  onBlur: () => {},
   name: '',
 };
 
 Select.propTypes = {
   options: PropTypes.array.isRequired,
-  value: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   label: PropTypes.string,
   onChange: PropTypes.func,
   onBlur: PropTypes.func,

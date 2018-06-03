@@ -4,10 +4,8 @@ import InputField from '../InputField';
 import Select from '../Select';
 import DatePickerInput from '../DatePickerInput';
 import {
-  FAMILY_STATUS_OPTIONS,
-  HOUSING_TYPE_OPTIONS,
-  OCCUPATION_OPTIONS,
-  YES_NO_OPTIONS,
+  ADDRESS_OPTIONS,
+  FAMILY_STATUS_OPTIONS, HOUSING_TYPE_OPTIONS,
 } from '../../constants';
 
 
@@ -16,135 +14,144 @@ class PersonalData extends Component {
     super(props);
 
     const {
-      address, forename, surname, familyStatus, birthDate,
-      occupation, hasCreditCard, hasEcCard, hasRealEstate, housingType, mainEarner,
-      carOwner, taxIdentificationNumber,
+      address, forename, surname, familyStatus, birthDate, housingType, nationality,
     } = props.personalData;
+
+    const {
+      livingSince, streetNumber, zipCode, city,
+      mobileTelephone, streetName,
+    } = this.props.contactData;
+
 
     this.state = {
       address: address || '',
       forename: forename || '',
       surname: surname || '',
-      familyStatus: familyStatus || '',
       birthDate,
-      occupation: occupation || '',
-      hasCreditCard: hasCreditCard || '',
-      hasEcCard: hasEcCard || '',
-      hasRealEstate: hasRealEstate || '',
+      nationality: nationality || '',
+      familyStatus: familyStatus || '',
+      city: city || '',
+      zipCode: zipCode || '',
+      streetNumber: streetNumber || '',
+      streetName: streetName || '',
       housingType: housingType || '',
-      mainEarner: mainEarner || '',
-      carOwner: carOwner || '',
-      taxIdentificationNumber: taxIdentificationNumber || 0,
+      livingSince: livingSince || '',
+      mobileTelephone: mobileTelephone || '',
     };
   }
 
-  onChange = (e) => {
+  onChange = (e, reference = 'personalData') => {
     const { name, value } = e;
     this.setState({ [name]: value }, () => {
-      this.props.onChange(this.state, 'personalData');
+      this.props.onChange(this.state, reference);
     });
+  };
+
+  onChangeContactData = (e) => {
+    this.onChange(e, 'contactData');
   };
 
   render() {
     const {
-      address, forename, surname, familyStatus, birthDate,
-      occupation, hasCreditCard, hasEcCard, hasRealEstate, housingType, mainEarner, taxIdentificationNumber,
-      carOwner,
+      address, forename, surname, familyStatus, housingType, city, zipCode, streetNumber,
+      livingSince, streetName, mobileTelephone, birthDate, nationality,
     } = this.state;
 
 
     return (
       <Fragment>
         <div className="formContent">
+          <Select
+            name="address"
+            label="Address"
+            options={ADDRESS_OPTIONS}
+            value={address}
+            onChange={this.onChange}
+          />
           <InputField
             name="forename"
-            label="Forename"
+            label="Vorname"
             value={forename}
             onChange={this.onChange}
           />
           <InputField
             name="surname"
-            label="Surname"
+            label="Nachname"
             value={surname}
             onChange={this.onChange}
           />
-          <InputField
-            name="address"
-            label="Address"
-            value={address}
-            onChange={this.onChange}
-          />
-          <InputField
-            name="taxIdentificationNumber"
-            label="taxIdentificationNumber"
-            value={taxIdentificationNumber}
-            type="number"
-            onChange={this.onChange}
-          />
-          <Select
-            name="familyStatus"
-            options={FAMILY_STATUS_OPTIONS}
-            value={familyStatus}
-            label="family status"
-            onChange={this.onChange}
 
-          />
           <DatePickerInput
             onChange={this.onChange}
             name="birthDate"
             label="Birth Date"
             value={birthDate}
           />
-          <Select
-            name="occupation"
-            options={OCCUPATION_OPTIONS}
-            value={occupation}
-            label="occupation"
-            onChange={this.onChange}
 
+          <InputField
+            name="nationality"
+            label="nationality"
+            value={nationality}
+            onChange={this.onChange}
+          />
+
+
+          <Select
+            name="familyStatus"
+            options={FAMILY_STATUS_OPTIONS}
+            value={familyStatus}
+            label="family status"
+            onChange={this.onChange}
+          />
+
+          <InputField
+            name="zipCode"
+            label="zipCode"
+            value={zipCode}
+            onChange={this.onChangeContactData}
+          />
+
+          <InputField
+            name="city"
+            label="city"
+            value={city}
+            onChange={this.onChangeContactData}
+          />
+
+          <InputField
+            name="streetName"
+            label="streetName"
+            value={streetName}
+            onChange={this.onChangeContactData}
+          />
+          <InputField
+            name="streetNumber"
+            label="streetNumber"
+            value={streetNumber}
+            onChange={this.onChangeContactData}
           />
           <Select
-            name="hasCreditCard"
-            label="has_credit_card"
-            onChange={this.onChange}
-            options={YES_NO_OPTIONS}
-            value={hasCreditCard}
-          />
-          <Select
-            name="hasEcCard"
-            label="has_ec_card"
-            onChange={this.onChange}
-            options={YES_NO_OPTIONS}
-            value={hasEcCard}
-          />
-          <Select
-            name="hasRealEstate"
-            label="has_real_estate"
-            onChange={this.onChange}
-            options={YES_NO_OPTIONS}
-            value={hasRealEstate}
-          />
-          <Select
-            name="housingType"
-            label="housing_type"
-            onChange={this.onChange}
             options={HOUSING_TYPE_OPTIONS}
+            name="housingType"
+            label="housingType"
             value={housingType}
+            onChange={this.onChangeContactData}
           />
-          <Select
-            name="mainEarner"
-            label="main_earner"
-            onChange={this.onChange}
-            options={YES_NO_OPTIONS}
-            value={mainEarner}
+
+          <InputField
+            name="livingSince"
+            label="livingSince"
+            value={livingSince}
+            onChange={this.onChangeContactData}
           />
-          <Select
-            name="carOwner"
-            label="car_owner"
-            onChange={this.onChange}
-            options={YES_NO_OPTIONS}
-            value={carOwner}
+
+          <InputField
+            name="mobileTelephone"
+            label="mobileTelephone"
+            value={mobileTelephone}
+            onChange={this.onChangeContactData}
           />
+
         </div>
       </Fragment>
     );
@@ -152,8 +159,6 @@ class PersonalData extends Component {
 }
 
 PersonalData.defaultProps = {
-  onChange: () => {
-  },
   personalData: {
     address: '',
     forename: '',
@@ -173,6 +178,7 @@ PersonalData.defaultProps = {
 PersonalData.propTypes = {
   onChange: PropTypes.func,
   personalData: PropTypes.object,
+  contactData: PropTypes.object,
 };
 
 export default PersonalData;

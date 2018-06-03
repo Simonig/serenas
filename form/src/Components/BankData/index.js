@@ -30,7 +30,6 @@ class BankData extends Component {
 
     errors[name] = Validation(name, value);
 
-    console.log(errors);
     this.setState({ errors });
   };
 
@@ -41,7 +40,6 @@ class BankData extends Component {
 
     return (
       <Fragment>
-        <h1>Bank Data</h1>
         <div className="formContent">
           <InputField
             name="iban"

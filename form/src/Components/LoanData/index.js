@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import {
   COLLECTION_DAY_OPTIONS,
   DURATION_OPTIONS,
-  YES_NO_OPTIONS,
 } from '../../constants';
 import AmountField from '../../Components/AmountField';
 import Select from '../../Components/Select';
@@ -14,17 +13,13 @@ class ContactData extends Component {
     super(props);
 
     const {
-      loanAsked, duration, collectionDay, rsv,
-      isAcceptedTermsOfService, isAcceptedSolvencyRetrieval,
+      loanAsked, duration, collectionDay,
     } = this.props.loanData;
 
     this.state = {
       loanAsked: loanAsked || 1000,
       duration: duration || '',
       collectionDay: collectionDay || '',
-      rsv: rsv || '',
-      isAcceptedTermsOfService: isAcceptedTermsOfService || '',
-      isAcceptedSolvencyRetrieval: isAcceptedSolvencyRetrieval || '',
       errors: {},
     };
   }
@@ -56,8 +51,7 @@ class ContactData extends Component {
 
   render() {
     const {
-      loanAsked, duration, collectionDay, rsv, errors,
-      isAcceptedTermsOfService, isAcceptedSolvencyRetrieval,
+      loanAsked, duration, collectionDay, errors,
     } = this.state;
 
     return (
@@ -94,49 +88,7 @@ class ContactData extends Component {
           />
           <p className="error">{errors.collectionDay}</p>
 
-          <Select
-            name="rsv"
-            label="Rsv"
-            onChange={this.onChange}
-            onBlur={this.onBlur}
-            options={YES_NO_OPTIONS}
-            value={rsv}
-          />
-          <p className="error">{errors.rsv}</p>
 
-
-          <div className="form-group form-check">
-            <input
-              className="form-check-input"
-              onClick={(e) => this.onChange({
-                name: e.target.name,
-                value: !isAcceptedTermsOfService,
-              })}
-              onBlur={this.onBlur}
-              name="isAcceptedTermsOfService"
-              defaultChecked={isAcceptedTermsOfService}
-              value={isAcceptedTermsOfService}
-              type="checkbox"
-            />
-            <label className="form-check-label">Terms and Conditions</label>
-          </div>
-          <p className="error">{errors.isAcceptedTermsOfService}</p>
-
-          <div className="form-group form-check">
-            <input
-              className="form-check-input"
-              onClick={(e) => this.onChange({
-                name: e.target.name,
-                value: !isAcceptedSolvencyRetrieval,
-              })}
-              onBlur={this.onBlur}
-              name="isAcceptedSolvencyRetrieval"
-              defaultChecked={isAcceptedSolvencyRetrieval}
-              value={isAcceptedSolvencyRetrieval}
-              type="checkbox"
-            />
-            <label className="form-check-label">Accept solvency retrieval</label>
-          </div>
           <p className="error">{errors.isAcceptedSolvencyRetrieval}</p>
 
         </div>

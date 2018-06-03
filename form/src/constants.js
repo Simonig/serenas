@@ -57,6 +57,12 @@ export const COLLECTION_DAY_OPTIONS = [
   { value: 15, name: '15' },
 ];
 
+
+export const ADDRESS_OPTIONS = [
+  { value: 1, name: 'Herr' },
+  { value: 2, name: 'Herrn' },
+];
+
 export const EMPLOYMENT_STATUS_OPTIONS = [
   { value: 1, name: 'unbefristet' },
   { value: 2, name: 'befristet' },
@@ -82,12 +88,12 @@ export const INITIAL_STATE = {
     birthDate: moment(),
     nationality: 'DE',
     occupation: '2',
-    hasCreditCard: '1',
-    hasEcCard: '1',
-    hasRealEstate: '1',
+    hasCreditCard: 1,
+    hasEcCard: 1,
+    hasRealEstate: 1,
     housingType: '1',
     mainEarner: '1',
-    carOwner: '1',
+    carOwner: 1,
     taxIdentificationNumber: 19999922991,
   },
   contactData: {
@@ -123,7 +129,7 @@ export const INITIAL_STATE = {
     zip: '40212',
     city: 'Düsseldorf',
     since: moment(),
-    employmentStatus: 1,
+    employmentStatus: '1',
   },
   bankData: {
     iban: 'DE12500105170648489890',
