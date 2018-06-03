@@ -18,18 +18,13 @@ const app = express();
 
 app.use(bodyParser.json());
 
-app.use('/', (req, res, next) => {
-  if (req.method !== 'POST') {
-    next();
-  } else {
-    req.method = 'GET';
-    next();
-  }
-});
+app.post('/submitForm', postForm);
+
 app.use(express.static(path.resolve(__dirname, '..', 'form', 'build')));
 
-
-app.post('/submitForm', postForm);
+app.all('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'form', 'build', 'index.html'));
+});
 
 
 // Express serve
