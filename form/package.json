@@ -30,6 +30,7 @@
     "ibantools": "^2.0.0",
     "immutable": "^3.8.2",
     "jest": "20.0.4",
+    "js-cookie": "^2.2.0",
     "moment": "^2.21.0",
     "object-assign": "4.1.1",
     "postcss-flexbugs-fixes": "3.2.0",

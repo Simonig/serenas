@@ -26,6 +26,13 @@ app.use(express.static(path.resolve(__dirname, '..', 'form', 'build')));
 
 app.all('/', (req, res) => {
   if (req.method === 'POST') {
+    const customer = `${req.body.x_customer_first_name} ${req.body.x_customer_last_name}`;
+
+    res.cookie('serenas_total', req.body.x_amount);
+    res.cookie('serenas_customer', customer);
+    res.cookie('serenas_currency', req.body.x_currency);
+    res.cookie('serenas_order', req.body.x_invoice);
+
     const total = req.body.x_cart_total_price;
     const currency = req.body.x_currency;
 

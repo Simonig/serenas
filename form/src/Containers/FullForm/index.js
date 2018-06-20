@@ -13,6 +13,7 @@ import LoanData from '../../Components/LoanData';
 import RowButton from '../../Components/RowButton';
 import NavigationBar from '../../Components/NavigationBar';
 import { formActions } from '../../Redux/FormReducer';
+import Summary from '../../Components/Summary';
 
 class FullForm extends Component {
   static propTypes = {
@@ -57,6 +58,7 @@ class FullForm extends Component {
         <div className="row serenas__container--row">
           <div className="col-sm-2 offset-sm-1 serenas__sidebar">
             <NavigationBar location={location} />
+            <Summary />
           </div>
           <div className="col-sm-8 serenas__content">
             <form onSubmit={this.submitForm}>
